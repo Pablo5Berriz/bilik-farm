@@ -27,7 +27,7 @@ const catalogue = [
       {
         slug: 'poules-pondeuses',
         title: 'Poules pondeuses',
-        image: '/images/pondeuse.jpg',
+        image: '/images/pondeuses2.jpg',
         description: "Mises en vente en fin de cycle de ponte. Élevées dans des poulaillers équipés de cages automatiques.",
         price: '2 200 FCFA',
         unit: '/ unité',
@@ -60,7 +60,7 @@ const catalogue = [
       {
         slug: 'tilapias-frais',
         title: 'Tilapias frais',
-        image: '/images/Tilapia.jpg',
+        image: '/images/tilapia2.jpg',
         description: "Chair tendre et savoureuse en eau pure. Idéaux pour les grillades, plats en sauce ou ceviches.",
         price: '2 500 FCFA',
         unit: '/ Kg',

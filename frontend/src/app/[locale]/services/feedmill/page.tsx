@@ -47,8 +47,8 @@ const foods = [
 
 const equipment = [
   {
-    img: '/images/abrevoir.jpeg',
-    alt: 'Abreuvoirs',
+    img: '/images/placeholder-abreuvoir.svg',
+    alt: "Emplacement provisoire pour une photo d'abreuvoir",
     badge: 'Équipement',
     title: 'Abreuvoirs',
     desc: "Conçus pour garantir un accès constant à l'eau fraîche. Robustes, faciles à nettoyer et adaptés à tous types d'animaux de ferme.",

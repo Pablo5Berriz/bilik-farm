@@ -27,7 +27,7 @@ const products = [
   {
     id: 3,
     title: 'Tilapias frais',
-    image: '/images/Tilapia.jpg',
+    image: '/images/tilapia2.jpg',
     badge: 'Aquaculture',
     description: 'Chair tendre et savoureuse issue d\'un élevage en eau pure. 25 000 poissons produits par cycle.',
     price: '2 500 FCFA',
@@ -78,21 +78,21 @@ const services = [
     icon: 'fas fa-paw',
     title: "Vente d'animaux",
     description: 'Carpes, tilapias, clarias, poules de ferme, porcs et lapins issus de notre élevage.',
-    image: '/images/Animaux.jpg',
+    image: '/images/poule de ferme.jpg',
     href: '/fr/services/animals',
   },
   {
     icon: 'fas fa-seedling',
     title: 'Vivres frais',
     description: 'Maïs, avocats, safou, papaye, manioc, bananes et plantains cultivés sur nos champs.',
-    image: '/images/Vives.jpg',
+    image: '/images/plantain.jpg',
     href: '/fr/services/fresh-produce',
   },
   {
     icon: 'fas fa-egg',
     title: 'Écloserie',
     description: 'Incubation professionnelle avec des installations modernes et des taux de réussite élevés.',
-    image: '/images/incubateur.webp',
+    image: '/images/oeufs2.jpg',
     href: '/fr/services/hatchery',
   },
   {
@@ -106,9 +106,9 @@ const services = [
 
 const gallery = [
   { src: '/images/agriculture.jpg', alt: 'Champs de culture', span: 'col-span-2 row-span-2' },
-  { src: '/images/pondeuse.jpg',    alt: 'Poules pondeuses',  span: '' },
+  { src: '/images/pondeuses2.jpg',  alt: 'Poules pondeuses',  span: '' },
   { src: '/images/Equipe.jpg',      alt: 'Notre équipe',      span: '' },
-  { src: '/images/abrevoir.jpeg',   alt: 'Abreuvoir',         span: '' },
+  { src: '/images/placeholder-abreuvoir.svg', alt: 'Emplacement provisoire pour une photo d’abreuvoir', span: '' },
   { src: '/images/mangeoire.jpg',   alt: 'Mangeoire',         span: '' },
   { src: '/images/Brouette.jpg',    alt: 'Travail au champ',  span: 'col-span-2' },
 ];
@@ -429,13 +429,13 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               <img src="/images/agriculture.jpg" alt="Champs de culture" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="gallery-item">
-              <img src="/images/pondeuse.jpg" alt="Poules pondeuses" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/images/pondeuses2.jpg" alt="Poules pondeuses" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="gallery-item">
               <img src="/images/Equipe.jpg" alt="Notre équipe" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="gallery-item">
-              <img src="/images/abrevoir.jpeg" alt="Abreuvoir" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/images/placeholder-abreuvoir.svg" alt="Emplacement provisoire pour une photo d’abreuvoir" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div className="gallery-item">
               <img src="/images/mangeoire.jpg" alt="Mangeoire" className="w-full h-full object-cover" loading="lazy" />
