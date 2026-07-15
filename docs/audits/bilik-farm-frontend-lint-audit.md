@@ -247,25 +247,28 @@ Ce fichier a ete remplace par le rapport R1 complet.
 - Aucun changement de version de Next.js, React, React DOM ou TypeScript.
 - Aucun changement volontaire de rendu ou de contenu métier.
 
-## 19. Commit créé
+## 19. Commit technique créé
 
 - Commit : `0a37f413d3a742aa0e44057e205c6ff95bf5de7c`
 - Message : `build(frontend): configure reproducible eslint`
 - Amend utilisé : non.
 - Push effectué : non.
 
-## 20. SHA et état final
+## 20. SHA et état après implémentation technique
 
 - Branche : `main`
-- SHA final : `0a37f413d3a742aa0e44057e205c6ff95bf5de7c`
+- SHA technique : `0a37f413d3a742aa0e44057e205c6ff95bf5de7c`
 - Working tree après le commit technique : propre.
 
-## 21. Ecarts ou incidents
+## 21. Écarts ou incidents
 
-- `npm install` signale des vulnerabilites. Aucun correctif de vulnerabilite n'a ete lance.
-- Le port `3000` etait occupe; la validation runtime isolee a utilise `3001`.
-- Un cache `.next` incoherent a ete detecte puis regenere par rebuild propre avant validation runtime finale.
+- npm a signalé cinq vulnérabilités après l’installation des dépendances ESLint; aucun correctif n’a été appliqué dans ce lot.
+- Le port `3000` était occupé; la validation runtime a été exécutée sur le port `3001`.
+- Le cache `.next` incohérent a été supprimé puis régénéré par un build propre.
+- Aucun fichier versionné hors périmètre n’a été modifié par cette régénération.
 
-## 22. Confirmation d'arret
+## 22. Confirmation d’arrêt
 
-Le present correctif synchronise la preuve documentaire avec l'execution technique deja terminee au commit `0a37f413d3a742aa0e44057e205c6ff95bf5de7c`. Aucun audit de vulnerabilites n'est commence.
+Le lint frontend reproductible a été établi, les corrections sûres ont été appliquées, puis le typecheck, le build et la validation runtime ont réussi.
+
+Le rapport a été finalisé par un correctif documentaire distinct. Aucun audit ni correctif de vulnérabilités n’a été lancé.
