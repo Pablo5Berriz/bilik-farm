@@ -8,7 +8,7 @@ export default function FreshProducePage() {
         <p className="text-lg text-gray-600">
           Cette activité fait partie des axes de développement de Bilik Farm. Les cultures seront
           présentées comme productions en développement, sans disponibilité commerciale publiée tant
-          qu'elle n'est pas confirmée.
+          qu&apos;elle n&apos;est pas confirmée.
         </p>
       </Container>
     </Section>

@@ -148,7 +148,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             </h1>
 
             <p className="text-lg text-white/75 mb-10 leading-relaxed max-w-lg">
-              Un projet agricole intégré développé sur une première superficie d'environ
+              Un projet agricole intégré développé sur une première superficie d&apos;environ
               2,5 hectares dans la région du Centre au Cameroun.
             </p>
 
@@ -248,12 +248,12 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               <div className="section-divider" />
               <p className="text-gray-600 mb-4 leading-relaxed">
                 Bilik Farm est un projet agricole intégré en développement dans la région
-                du Centre au Cameroun. Il démarre sur une première superficie d'environ
+                du Centre au Cameroun. Il démarre sur une première superficie d&apos;environ
                 <strong> 2,5 hectares</strong>.
               </p>
               <p className="text-gray-500 mb-10 leading-relaxed">
-                Le projet vise une montée en puissance progressive autour de l'agriculture,
-                de l'élevage, de l'aquaculture et du développement local.
+                Le projet vise une montée en puissance progressive autour de l&apos;agriculture,
+                de l&apos;élevage, de l&apos;aquaculture et du développement local.
               </p>
 
               <div className="space-y-4 mb-10">

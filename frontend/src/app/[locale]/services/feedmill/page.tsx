@@ -100,7 +100,7 @@ export default function FeedmillPage({ params }: { params: { locale: string } })
             Provenderie
           </h1>
           <p className="text-white/75 text-lg max-w-xl leading-relaxed">
-            Cette activité fait partie des développements prévus de Bilik Farm et n'est pas encore proposée comme service commercial.
+            Cette activité fait partie des développements prévus de Bilik Farm et n&apos;est pas encore proposée comme service commercial.
           </p>
         </div>
       </section>
@@ -113,7 +113,7 @@ export default function FeedmillPage({ params }: { params: { locale: string } })
             <h2 className="text-4xl font-extrabold text-green-900 mt-4">Nos aliments pour animaux</h2>
             <div className="section-divider-center" />
             <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
-              La provenderie commerciale est une perspective future. Aucune formule ni disponibilité n'est publiée à ce stade.
+              La provenderie commerciale est une perspective future. Aucune formule ni disponibilité n&apos;est publiée à ce stade.
             </p>
           </div>
 
@@ -147,7 +147,7 @@ export default function FeedmillPage({ params }: { params: { locale: string } })
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="section-tag">Équipements agricoles</span>
-            <h2 className="text-4xl font-extrabold text-green-900 mt-4">Matériel d'élevage</h2>
+            <h2 className="text-4xl font-extrabold text-green-900 mt-4">Matériel d&apos;élevage</h2>
             <div className="section-divider-center" />
           </div>
 

@@ -62,11 +62,11 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
                   Bilik Farm est un projet agricole intégré en développement. Il vise à structurer
-                  progressivement des activités agricoles, d'élevage et d'aquaculture.
+                  progressivement des activités agricoles, d&apos;élevage et d&apos;aquaculture.
                 </p>
                 <p>
                   Le projet démarre dans la région du Centre au Cameroun sur une première superficie
-                  d'environ <strong className="text-gray-800">2,5 hectares</strong>.
+                  d&apos;environ <strong className="text-gray-800">2,5 hectares</strong>.
                 </p>
                 <p>
                   Cette première phase permet de poser les bases du projet avant toute extension
@@ -108,12 +108,12 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
               <div className="section-divider" />
               <div className="space-y-4 text-gray-600 leading-relaxed mb-10">
                 <p>
-                  Chez Bilik Farm, l'objectif est de développer progressivement un modèle agricole
+                  Chez Bilik Farm, l&apos;objectif est de développer progressivement un modèle agricole
                   intégré, adapté au territoire et attentif à la qualité des productions futures.
                 </p>
                 <p>
                   Les activités seront structurées par étapes, sans présenter de capacité, de volume
-                  ou de disponibilité tant qu'ils ne sont pas confirmés.
+                  ou de disponibilité tant qu&apos;ils ne sont pas confirmés.
                 </p>
               </div>
 
@@ -196,7 +196,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
                   commerciales.
                 </p>
                 <p>
-                  Les collaborations futures seront présentées uniquement lorsqu'elles seront confirmées.
+                  Les collaborations futures seront présentées uniquement lorsqu&apos;elles seront confirmées.
                 </p>
                 <p>
                   Cette prudence permet de conserver une communication claire, sobre et crédible.
