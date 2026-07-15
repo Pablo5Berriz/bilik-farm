@@ -5,7 +5,7 @@ interface Product {
   name: string;
   slug: string;
   description?: string;
-  price: number;
+  price?: number;
   images: string[];
   category?: { name: string };
 }
@@ -25,7 +25,7 @@ export function ProductCard({ product }: { product: Product }) {
           <span className="text-xs text-green-600 font-semibold uppercase">{product.category.name}</span>
         )}
         <h3 className="font-bold text-gray-800 mt-1 mb-2">{product.name}</h3>
-        <p className="text-green-700 font-semibold mb-3">{product.price.toLocaleString()} FCFA</p>
+        <p className="text-green-700 font-semibold mb-3">Informations sur demande</p>
         <Link href={`/fr/products/${product.slug}`} className="btn-primary text-sm py-2 w-full text-center block">
           Voir le produit
         </Link>

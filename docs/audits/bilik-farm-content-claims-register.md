@@ -40,6 +40,24 @@ SHA cible : commit local `fix(content): remove unverified public claims`
 
 Les textes précédents sont conservés dans le registre et dans `bilik-farm-content-source-map.csv`. Le CSV ajoute les colonnes `bf002b_resolution` et `bf002b_action` pour tracer l'action appliquée à chaque `claim_id`.
 
+## Mise à jour BF-REPRISE-002B-R1
+
+Date : 2026-07-14
+SHA de départ : `eb8136ef92a5556807cf24ee832897f022e7d8ce`
+SHA cible : commit local `fix(frontend): disable unverified contact flow`
+
+### Corrections résiduelles
+
+| Point corrigé | Statut |
+| --- | --- |
+| Occurrences `FCFA` dans `frontend/src/lib/utils.ts` et `frontend/src/components/ui/ProductCard.tsx` | RETIRÉ |
+| CTA fiche produit `Demander des informations` | LIEN VERS `/fr/contact` |
+| Requête réseau du formulaire contact | RETIRÉE |
+| Faux succès de formulaire | RETIRÉ |
+| Statut formulaire | TEMPORAIREMENT INDISPONIBLE |
+
+Le formulaire de contact reste visible pour préserver la mise en page, mais ses champs et son bouton sont désactivés. Aucune donnée utilisateur n'est envoyée, stockée ou transmise tant qu'un backend de contact n'est pas validé.
+
 ## Statistiques
 
 ### Par catégorie

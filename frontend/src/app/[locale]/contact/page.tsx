@@ -4,7 +4,7 @@ import { ContactForm } from '@/components/forms/ContactForm';
 
 export default function ContactPage() {
   return (
-    <Section title="Nous contacter" subtitle="Notre équipe est à votre écoute">
+    <Section title="Nous contacter" subtitle="Canal en préparation">
       <Container>
         <div className="max-w-2xl mx-auto">
           <ContactForm />

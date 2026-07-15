@@ -42,6 +42,16 @@ Source : registre `bilik-farm-content-claims-register.md`
 - CTA de commande ou devis restants : 0.
 - Coordonnées placeholders restantes dans les pages autorisées : 0.
 
+## Résultat BF-REPRISE-002B-R1
+
+- Deux occurrences `FCFA` résiduelles retirées du frontend.
+- `frontend/src/lib/utils.ts` retourne une information neutre sans devise.
+- `frontend/src/components/ui/ProductCard.tsx` n'affiche plus de prix ni de devise.
+- La fiche produit utilise un lien vers la page contact locale.
+- Le formulaire de contact est temporairement indisponible.
+- Aucun appel `fetch` vers `/api/contact` ne subsiste dans le formulaire.
+- Aucun état de succès simulé n'est affiché.
+
 ## 1. Identité et statut juridique
 
 - Information affichée : Bilik Farm est une ferme agro-pastorale.
