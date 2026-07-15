@@ -27,7 +27,7 @@ export function ContactForm() {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
         <p className="text-green-800 font-semibold text-lg">Message envoyé avec succès!</p>
-        <p className="text-green-600 mt-2">Nous vous répondrons dans les plus brefs délais.</p>
+        <p className="text-green-600 mt-2">Votre message a bien été transmis.</p>
         <button onClick={() => setStatus('idle')} className="mt-4 text-green-700 underline">Envoyer un autre message</button>
       </div>
     );

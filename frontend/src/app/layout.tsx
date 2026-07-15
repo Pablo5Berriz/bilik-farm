@@ -8,8 +8,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Bilik Farm — Ferme Agro-Pastorale',
-  description: 'Bilik Farm — Ferme agro-pastorale de 40 hectares au cœur du Cameroun. Produits frais, animaux, aquaculture, provenderie et conseils agricoles.',
+  title: 'Bilik Farm — Projet agricole intégré',
+  description: "Bilik Farm est un projet agricole intégré en développement sur une première superficie d'environ 2,5 hectares dans la région du Centre au Cameroun.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

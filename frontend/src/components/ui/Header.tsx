@@ -31,15 +31,15 @@ export function Header({ locale }: HeaderProps) {
   const navLinks = [
     { href: `/${locale}`, label: 'Accueil' },
     { href: `/${locale}/about`, label: 'À propos' },
-    { href: `/${locale}/products`, label: 'Nos Produits' },
+    { href: `/${locale}/products`, label: 'Filières ciblées' },
   ];
 
   const services = [
-    { href: `/${locale}/services/feedmill`, icon: 'fas fa-box-open', label: 'Provenderie' },
-    { href: `/${locale}/services/animals`, icon: 'fas fa-paw', label: "Vente d'animaux" },
-    { href: `/${locale}/services/fresh-produce`, icon: 'fas fa-seedling', label: 'Vente de vivres frais' },
-    { href: `/${locale}/services/hatchery`, icon: 'fas fa-egg', label: 'Écloserie' },
-    { href: `/${locale}/services/advisory`, icon: 'fas fa-lightbulb', label: 'Conseils' },
+    { href: `/${locale}/services/feedmill`, icon: 'fas fa-box-open', label: 'Provenderie prévue' },
+    { href: `/${locale}/services/animals`, icon: 'fas fa-paw', label: "Élevage en développement" },
+    { href: `/${locale}/services/fresh-produce`, icon: 'fas fa-seedling', label: 'Cultures ciblées' },
+    { href: `/${locale}/services/hatchery`, icon: 'fas fa-egg', label: 'Écloserie prévue' },
+    { href: `/${locale}/services/advisory`, icon: 'fas fa-lightbulb', label: 'Accompagnement futur' },
   ];
 
   return (
@@ -67,7 +67,7 @@ export function Header({ locale }: HeaderProps) {
               <button
                 onClick={() => setServicesOpen(!servicesOpen)}
                 className="flex items-center gap-1 px-4 py-2 text-gray-600 font-medium hover:text-green-700 hover:bg-green-50 rounded-lg transition-colors">
-                Nos Services
+                Axes du projet
                 <i className={`fas fa-chevron-down text-xs transition-transform ${servicesOpen ? 'rotate-180' : ''}`}></i>
               </button>
               {servicesOpen && (
@@ -112,7 +112,7 @@ export function Header({ locale }: HeaderProps) {
               </Link>
             ))}
             <div className="px-2 py-3 border-b border-gray-50">
-              <p className="font-medium text-gray-700 mb-2">Nos Services</p>
+              <p className="font-medium text-gray-700 mb-2">Axes du projet</p>
               {services.map((s) => (
                 <Link key={s.href} href={s.href}
                   onClick={() => setMenuOpen(false)}

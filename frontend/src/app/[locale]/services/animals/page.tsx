@@ -3,12 +3,13 @@ import { Section } from '@/components/ui/Section';
 
 export default function AnimalsPage() {
   return (
-    <Section title="Élevage Avicole" subtitle="Production de volailles de qualité supérieure">
+    <Section title="Élevage en développement" subtitle="Axe progressif du projet Bilik Farm">
       <Container>
         <div className="prose max-w-none">
           <p className="text-lg text-gray-600">
-            Notre élevage avicole propose des poulets de chair, poules pondeuses et autres volailles
-            élevés dans des conditions optimales pour garantir la meilleure qualité.
+            Cette activité fait partie des développements prévus de Bilik Farm et n'est pas encore
+            proposée comme service commercial. Les filières d'élevage seront présentées progressivement,
+            sans disponibilité ni effectif publiés tant qu'ils ne sont pas confirmés.
           </p>
         </div>
       </Container>

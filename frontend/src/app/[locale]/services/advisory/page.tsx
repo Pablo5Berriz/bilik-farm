@@ -3,11 +3,12 @@ import { Section } from '@/components/ui/Section';
 
 export default function AdvisoryPage() {
   return (
-    <Section title="Conseil Agricole" subtitle="Expertise et accompagnement technique">
+    <Section title="Accompagnement futur" subtitle="Perspective de conseil agricole">
       <Container>
         <p className="text-lg text-gray-600">
-          Notre équipe d'experts vous accompagne dans vos projets d'élevage et de production
-          agricole avec des conseils techniques personnalisés.
+          Cette activité fait partie des développements prévus de Bilik Farm et n'est pas encore
+          proposée comme service commercial. Un accompagnement pourra être structuré plus tard, avec
+          des compétences et modalités confirmées.
         </p>
       </Container>
     </Section>

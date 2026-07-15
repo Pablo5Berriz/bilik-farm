@@ -3,11 +3,12 @@ import { Section } from '@/components/ui/Section';
 
 export default function FreshProducePage() {
   return (
-    <Section title="Produits Frais" subtitle="Légumes et fruits frais de saison">
+    <Section title="Cultures ciblées" subtitle="Productions vivrières et maraîchères en développement">
       <Container>
         <p className="text-lg text-gray-600">
-          Nos produits frais sont cultivés localement et récoltés à maturité pour vous offrir
-          les meilleures saveurs et une qualité nutritionnelle optimale.
+          Cette activité fait partie des axes de développement de Bilik Farm. Les cultures seront
+          présentées comme productions en développement, sans disponibilité commerciale publiée tant
+          qu'elle n'est pas confirmée.
         </p>
       </Container>
     </Section>

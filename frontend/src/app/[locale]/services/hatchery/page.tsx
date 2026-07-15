@@ -3,11 +3,12 @@ import { Section } from '@/components/ui/Section';
 
 export default function HatcheryPage() {
   return (
-    <Section title="Couvoir" subtitle="Production de poussins d'un jour">
+    <Section title="Écloserie prévue" subtitle="Développement futur du projet">
       <Container>
         <p className="text-lg text-gray-600">
-          Notre couvoir moderne produit des poussins d'un jour de haute qualité génétique,
-          vaccinés et prêts pour l'élevage.
+          Cette activité fait partie des développements prévus de Bilik Farm et n'est pas encore
+          proposée comme service commercial. Aucune capacité, disponibilité ou performance n'est publiée
+          à ce stade.
         </p>
       </Container>
     </Section>

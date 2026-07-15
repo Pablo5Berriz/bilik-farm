@@ -9,9 +9,9 @@ const products = [
     title: 'Œufs de table',
     image: '/images/oeufs.jpeg',
     badge: 'Aviculture',
-    description: 'Issus de nos 10 000 poules pondeuses, inspectés quotidiennement pour une fraîcheur et une qualité irréprochables.',
-    price: '2 200 FCFA',
-    unit: '/ Alvéole',
+    description: "Filière avicole ciblée dans le développement progressif de Bilik Farm.",
+    price: 'Informations sur demande',
+    unit: '',
     slug: 'oeufs-de-table',
   },
   {
@@ -19,9 +19,9 @@ const products = [
     title: 'Carpes fraîches',
     image: '/images/carpe2.jpeg',
     badge: 'Aquaculture',
-    description: 'Élevées dans nos étangs contrôlés, nos carpes offrent une chair remarquable issue de pratiques durables.',
-    price: '2 500 FCFA',
-    unit: '/ Kg',
+    description: "Filière aquacole envisagée dans l'approche intégrée du projet.",
+    price: 'Informations sur demande',
+    unit: '',
     slug: 'carpes-fraiches',
   },
   {
@@ -29,9 +29,9 @@ const products = [
     title: 'Tilapias frais',
     image: '/images/tilapia2.jpg',
     badge: 'Aquaculture',
-    description: 'Chair tendre et savoureuse issue d\'un élevage en eau pure. 25 000 poissons produits par cycle.',
-    price: '2 500 FCFA',
-    unit: '/ Kg',
+    description: "Production en développement dans les axes aquacoles ciblés par Bilik Farm.",
+    price: 'Informations sur demande',
+    unit: '',
     slug: 'tilapias-frais',
   },
   {
@@ -39,9 +39,9 @@ const products = [
     title: 'Viande de porc',
     image: '/images/Porc.jpg',
     badge: 'Élevage',
-    description: 'Nourris avec des aliments biologiques adaptés, nos 2 500 porcs produisent une viande juteuse d\'exception.',
-    price: '2 800 FCFA',
-    unit: '/ Kg',
+    description: "Activité d'élevage prévue dans une montée en puissance progressive.",
+    price: 'Informations sur demande',
+    unit: '',
     slug: 'viande-de-porc',
   },
   {
@@ -49,9 +49,9 @@ const products = [
     title: 'Maïs frais',
     image: '/images/Mais.jpeg',
     badge: 'Agriculture',
-    description: 'Cultivé sur 20 hectares, récolté à la main au moment optimal de maturité pour garantir douceur et croquant.',
-    price: '30 000 FCFA',
-    unit: '/ 100 Kg',
+    description: "Culture vivrière ciblée dans la première phase agricole du projet.",
+    price: 'Informations sur demande',
+    unit: '',
     slug: 'mais-frais',
   },
   {
@@ -59,9 +59,9 @@ const products = [
     title: 'Poules du village',
     image: '/images/poule_village.jpeg',
     badge: 'Aviculture',
-    description: 'Élevées en liberté dans un environnement naturel, nos 1 500 poules du village incarnent l\'authenticité paysanne.',
-    price: '10 000 FCFA',
-    unit: '/ pièce',
+    description: "Filière avicole envisagée, à confirmer selon la disponibilité réelle.",
+    price: 'Informations sur demande',
+    unit: '',
     slug: 'poules-du-village',
   },
 ];
@@ -69,36 +69,36 @@ const products = [
 const services = [
   {
     icon: 'fas fa-box-open',
-    title: 'Provenderie',
-    description: 'Aliments formulés pour une nutrition optimale — poules, porcs, poissons. Sacs de 50 kg disponibles.',
+    title: 'Provenderie prévue',
+    description: "Développement prévu, non proposé actuellement comme service commercial.",
     image: '/images/provenderie.jpg',
     href: '/fr/services/feedmill',
   },
   {
     icon: 'fas fa-paw',
-    title: "Vente d'animaux",
-    description: 'Carpes, tilapias, clarias, poules de ferme, porcs et lapins issus de notre élevage.',
+    title: "Élevage en développement",
+    description: "Axe du projet autour de l'aviculture, de l'élevage et de l'aquaculture.",
     image: '/images/poule de ferme.jpg',
     href: '/fr/services/animals',
   },
   {
     icon: 'fas fa-seedling',
-    title: 'Vivres frais',
-    description: 'Maïs, avocats, safou, papaye, manioc, bananes et plantains cultivés sur nos champs.',
+    title: 'Cultures ciblées',
+    description: 'Cultures vivrières et maraîchères envisagées dans le développement agricole.',
     image: '/images/plantain.jpg',
     href: '/fr/services/fresh-produce',
   },
   {
     icon: 'fas fa-egg',
-    title: 'Écloserie',
-    description: 'Incubation professionnelle avec des installations modernes et des taux de réussite élevés.',
+    title: 'Écloserie prévue',
+    description: "Développement futur, non proposé actuellement comme service commercial.",
     image: '/images/oeufs2.jpg',
     href: '/fr/services/hatchery',
   },
   {
     icon: 'fas fa-lightbulb',
-    title: 'Conseils agricoles',
-    description: 'Nos experts vous accompagnent pour améliorer vos pratiques et maximiser vos rendements.',
+    title: 'Accompagnement futur',
+    description: "Perspective d'appui technique à structurer progressivement.",
     image: '/images/conseil.jpg',
     href: '/fr/services/advisory',
   },
@@ -111,27 +111,6 @@ const gallery = [
   { src: '/images/placeholder-abreuvoir.svg', alt: 'Emplacement provisoire pour une photo d’abreuvoir', span: '' },
   { src: '/images/mangeoire.jpg',   alt: 'Mangeoire',         span: '' },
   { src: '/images/Brouette.jpg',    alt: 'Travail au champ',  span: 'col-span-2' },
-];
-
-const testimonials = [
-  {
-    stars: 5,
-    text: 'Des produits d\'une fraîcheur exceptionnelle ! Les œufs de Bilik Farm sont incomparables. Je recommande vivement à toute personne cherchant des produits de qualité.',
-    author: 'Marie Nkodo',
-    role: 'Cliente fidèle, Yaoundé',
-  },
-  {
-    stars: 5,
-    text: 'J\'achète mes poissons chez Bilik Farm depuis plus d\'un an. La qualité est constante et le service est excellent. Une ferme qui mérite vraiment d\'être connue !',
-    author: 'Jean-Pierre Mbarga',
-    role: 'Restaurateur, Douala',
-  },
-  {
-    stars: 4.5,
-    text: 'Les conseils agricoles de l\'équipe m\'ont permis d\'améliorer considérablement mon élevage. Bilik Farm est une vraie référence dans la région.',
-    author: 'Alphonse Ntouba',
-    role: 'Agriculteur, Akono',
-  },
 ];
 
 /* ─────────────────────────────────────────
@@ -159,23 +138,23 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20
                             text-white/90 text-sm font-medium px-4 py-2 rounded-full mb-8">
               <i className="fas fa-map-marker-alt text-green-400 text-xs"></i>
-              Ferme Agro-Pastorale · Bilik, Cameroun
+              Projet agricole intégré · Région du Centre, Cameroun
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
-              La nature <br />
-              <span className="text-green-400">au service</span><br />
-              de votre table
+              Bilik Farm <br />
+              <span className="text-green-400">en développement</span><br />
+              au Cameroun
             </h1>
 
             <p className="text-lg text-white/75 mb-10 leading-relaxed max-w-lg">
-              40 hectares de terres fertiles dédiés à l'élevage, l'aquaculture et
-              l'agriculture durable au cœur de la région Centre du Cameroun.
+              Un projet agricole intégré développé sur une première superficie d'environ
+              2,5 hectares dans la région du Centre au Cameroun.
             </p>
 
             <div className="flex flex-wrap gap-4">
               <Link href={`/${locale}/products`} className="btn-primary btn-lg">
-                <i className="fas fa-store text-sm"></i> Nos produits
+                <i className="fas fa-seedling text-sm"></i> Découvrir le projet
               </Link>
               <Link href={`/${locale}/contact`} className="btn-outline btn-lg">
                 <i className="fas fa-phone text-sm"></i> Nous contacter
@@ -185,9 +164,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             {/* trust badges */}
             <div className="flex flex-wrap gap-6 mt-12 pt-10 border-t border-white/15">
               {[
-                { icon: 'fas fa-leaf', label: 'Agriculture durable' },
-                { icon: 'fas fa-award', label: 'Qualité garantie' },
-                { icon: 'fas fa-truck', label: 'Livraison locale' },
+                { icon: 'fas fa-leaf', label: 'Pratiques responsables' },
+                { icon: 'fas fa-seedling', label: 'Approche progressive' },
+                { icon: 'fas fa-handshake', label: 'Ancrage local' },
               ].map((b) => (
                 <div key={b.label} className="flex items-center gap-2 text-white/70 text-sm">
                   <i className={`${b.icon} text-green-400`}></i>
@@ -211,10 +190,10 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-green-700/50">
             {[
-              { icon: 'fas fa-mountain', number: '40', suffix: ' ha', label: 'Terres fertiles' },
-              { icon: 'fas fa-egg',      number: '10 000', suffix: '', label: 'Poules pondeuses' },
-              { icon: 'fas fa-fish',     number: '25 000', suffix: '', label: 'Poissons / vague' },
-              { icon: 'fas fa-piggy-bank', number: '2 500', suffix: '', label: 'Porcs en élevage' },
+              { icon: 'fas fa-mountain', number: '2,5', suffix: ' ha', label: 'Première superficie' },
+              { icon: 'fas fa-seedling', number: 'Projet', suffix: '', label: 'Agriculture intégrée' },
+              { icon: 'fas fa-fish',     number: 'Axe', suffix: '', label: 'Aquaculture ciblée' },
+              { icon: 'fas fa-handshake', number: 'Local', suffix: '', label: 'Développement progressif' },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col items-center text-center py-8 px-4 gap-1">
                 <div className="w-10 h-10 rounded-full bg-green-700/60 flex items-center justify-center mb-2">
@@ -254,8 +233,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               {/* floating badge */}
               <div className="absolute -bottom-5 -right-4 bg-green-700 text-white
                               rounded-2xl px-5 py-4 shadow-xl text-center">
-                <div className="text-2xl font-extrabold">+10 ans</div>
-                <div className="text-green-200 text-xs mt-0.5">d'expérience</div>
+                <div className="text-2xl font-extrabold">2,5 ha</div>
+                <div className="text-green-200 text-xs mt-0.5">première phase</div>
               </div>
             </div>
 
@@ -268,21 +247,20 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               </h2>
               <div className="section-divider" />
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Fondée par <strong>Paul Quentin Ondoa Bidzo</strong>, Bilik Farm est née d'un
-                engagement inébranlable envers des pratiques agricoles durables et éthiques.
-                Nichée au cœur de la région Centre du Cameroun, notre exploitation s'étend
-                sur <strong>40 hectares de terres fertiles</strong>.
+                Bilik Farm est un projet agricole intégré en développement dans la région
+                du Centre au Cameroun. Il démarre sur une première superficie d'environ
+                <strong> 2,5 hectares</strong>.
               </p>
               <p className="text-gray-500 mb-10 leading-relaxed">
-                Nous croyons que l'agriculture peut être une force pour le bien : créer des emplois,
-                stimuler l'économie locale et nourrir les communautés dans le respect de l'environnement.
+                Le projet vise une montée en puissance progressive autour de l'agriculture,
+                de l'élevage, de l'aquaculture et du développement local.
               </p>
 
               <div className="space-y-4 mb-10">
                 {[
-                  { icon: 'fas fa-leaf',  title: 'Agriculture durable',     desc: "Pratiques respectueuses de l'environnement à chaque étape" },
-                  { icon: 'fas fa-award', title: 'Qualité irréprochable',    desc: 'Contrôle rigoureux de chaque produit avant livraison' },
-                  { icon: 'fas fa-users', title: 'Ancrage communautaire',    desc: 'Contribution au développement économique local' },
+                  { icon: 'fas fa-leaf',  title: 'Pratiques responsables', desc: "Volonté de développer une approche attentive aux sols et aux ressources" },
+                  { icon: 'fas fa-award', title: 'Attention à la qualité', desc: 'Objectif de structurer des productions suivies avec soin' },
+                  { icon: 'fas fa-users', title: 'Ancrage local', desc: 'Objectif de contribuer au développement local' },
                 ].map((v) => (
                   <div key={v.title} className="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-gray-100">
                     <div className="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center text-white shrink-0">
@@ -311,11 +289,11 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             <div>
               <span className="section-tag">Catalogue</span>
               <h2 className="text-4xl font-extrabold text-green-900 mt-4 leading-tight">
-                Nos Produits Phares
+                Filières ciblées
               </h2>
               <div className="section-divider" />
               <p className="text-gray-500 max-w-md leading-relaxed">
-                Produits frais cultivés et élevés avec soin sur nos 40 hectares de terres fertiles.
+                Présentation des productions envisagées. Les disponibilités seront confirmées progressivement.
               </p>
             </div>
             <Link href={`/${locale}/products`} className="btn-outline-green btn-lg shrink-0">
@@ -363,7 +341,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             <h2 className="text-4xl font-extrabold text-green-900 mt-4">Ce que nous offrons</h2>
             <div className="section-divider-center" />
             <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">
-              Bilik Farm propose une gamme complète de services agricoles pour répondre à tous vos besoins.
+              Certaines activités font partie des développements prévus et ne sont pas encore proposées comme services commerciaux.
             </p>
           </div>
 
@@ -420,7 +398,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               <div className="section-divider" />
             </div>
             <p className="text-gray-500 max-w-xs text-sm leading-relaxed">
-              Bilik Farm en toute transparence — venez découvrir nos installations sur place.
+              Images de référence du projet et de ses axes agricoles en développement.
             </p>
           </div>
 
@@ -444,51 +422,6 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </div>
       </section>
 
-      {/* ══ TÉMOIGNAGES ═══════════════════════════════════════════════ */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <span className="section-tag">Témoignages</span>
-            <h2 className="text-4xl font-extrabold text-green-900 mt-4">
-              Ce que disent nos <span className="text-green-600">clients</span>
-            </h2>
-            <div className="section-divider-center" />
-            <p className="text-gray-500 max-w-md mx-auto leading-relaxed">
-              La satisfaction de nos clients est notre plus belle récompense.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-7">
-            {testimonials.map((t) => (
-              <div key={t.author} className="avis-card">
-                {/* Stars */}
-                <div className="flex gap-0.5 text-amber-400 text-sm">
-                  {Array.from({ length: Math.floor(t.stars) }).map((_, i) => (
-                    <i key={i} className="fas fa-star"></i>
-                  ))}
-                  {t.stars % 1 !== 0 && <i className="fas fa-star-half-alt"></i>}
-                </div>
-
-                <p className="text-gray-600 leading-relaxed text-[15px] relative z-10">
-                  {t.text}
-                </p>
-
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <div className="w-11 h-11 rounded-full bg-green-100 flex items-center justify-center
-                                  text-green-600 text-2xl shrink-0">
-                    <i className="fas fa-user-circle"></i>
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-800 text-sm">{t.author}</p>
-                    <p className="text-xs text-gray-400">{t.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ══ CTA ═══════════════════════════════════════════════════════ */}
       <section className="relative py-28 overflow-hidden">
         <img src="/images/ferme.webp" alt=""
@@ -497,22 +430,22 @@ export default function HomePage({ params }: { params: { locale: string } }) {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-tag text-green-300 border-green-700 bg-green-900/50 mb-6">
-            Passez commande
+            Demander des informations
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight">
-            Intéressé par nos produits ?
+            Intéressé par le projet ?
           </h2>
           <p className="text-green-200 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            Contactez-nous directement pour passer commande ou obtenir plus d'informations
-            sur nos produits et services.
+            Contactez-nous pour en savoir plus sur les axes agricoles en développement
+            ou proposer un partenariat.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href={`/${locale}/contact`} className="btn-white btn-lg">
-              <i className="fas fa-envelope text-sm"></i> Nous écrire
+              <i className="fas fa-envelope text-sm"></i> Nous contacter
             </Link>
-            <a href="tel:+237000000000" className="btn-outline btn-lg">
-              <i className="fas fa-phone text-sm"></i> Appeler directement
-            </a>
+            <Link href={`/${locale}/about`} className="btn-outline btn-lg">
+              <i className="fas fa-seedling text-sm"></i> Découvrir le projet
+            </Link>
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'À propos — Bilik Farm',
-  description: "Découvrez l'histoire, la mission et l'équipe de Bilik Farm, ferme agro-pastorale au Cameroun.",
+  description: "Découvrez le positionnement de Bilik Farm, projet agricole intégré en développement au Cameroun.",
 };
 
 export default function AboutPage({ params }: { params: { locale: string } }) {
@@ -32,7 +32,7 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
             À propos de <span className="text-green-400">Bilik Farm</span>
           </h1>
           <p className="text-lg text-white/70 max-w-xl leading-relaxed">
-            Une ferme agro-pastorale fondée sur la passion de la terre et l'engagement envers la durabilité.
+            Un projet agricole intégré en développement dans la région du Centre au Cameroun.
           </p>
         </div>
       </section>
@@ -54,35 +54,32 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
 
             {/* Text */}
             <div>
-              <span className="section-tag">Notre fondation</span>
+              <span className="section-tag">Notre projet</span>
               <h2 className="text-4xl font-extrabold text-green-900 mt-4 mb-2 leading-tight">
-                Une histoire enracinée<br />dans <span className="text-green-600">la terre</span>
+                Une première phase<br />dans <span className="text-green-600">la région du Centre</span>
               </h2>
               <div className="section-divider" />
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  L'histoire de Bilik Farm est un témoignage de dévouement envers la terre et les animaux.
-                  Fondée par <strong className="text-gray-800">Paul Quentin Ondoa Bidzo</strong>, notre ferme
-                  a vu le jour grâce à un engagement inébranlable envers des pratiques agricoles durables et éthiques.
+                  Bilik Farm est un projet agricole intégré en développement. Il vise à structurer
+                  progressivement des activités agricoles, d'élevage et d'aquaculture.
                 </p>
                 <p>
-                  Nichée au cœur de la magnifique région du Centre au Cameroun, précisément dans le village de
-                  Bilik, notre exploitation s'étend sur <strong className="text-gray-800">40 hectares de terres fertiles</strong>.
-                  Mais notre histoire va bien au-delà de ces chiffres.
+                  Le projet démarre dans la région du Centre au Cameroun sur une première superficie
+                  d'environ <strong className="text-gray-800">2,5 hectares</strong>.
                 </p>
                 <p>
-                  Nos modestes débuts étaient ancrés dans une passion pour la terre et une volonté de créer quelque
-                  chose de durable et de significatif — une force pour le bien, préservant l'environnement et
-                  contribuant au bien-être de la communauté.
+                  Cette première phase permet de poser les bases du projet avant toute extension
+                  commerciale ou industrielle.
                 </p>
               </div>
 
               {/* Mini stats */}
               <div className="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-gray-100">
                 {[
-                  { number: '40', suffix: 'ha', label: 'de terres' },
-                  { number: '10+', suffix: '', label: "ans d'expérience" },
-                  { number: '5', suffix: '', label: 'services actifs' },
+                  { number: '2,5', suffix: 'ha', label: 'première phase' },
+                  { number: 'Centre', suffix: '', label: 'Cameroun' },
+                  { number: 'Projet', suffix: '', label: 'en développement' },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
                     <div className="text-2xl font-extrabold text-green-700">
@@ -111,15 +108,12 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
               <div className="section-divider" />
               <div className="space-y-4 text-gray-600 leading-relaxed mb-10">
                 <p>
-                  Chez Bilik Farm, nous sommes plus qu'une simple ferme — nous sommes des gardiens de la
-                  terre et des fournisseurs de nourriture de qualité. Notre mission est profondément ancrée
-                  dans notre engagement envers la préservation de l'environnement et la fourniture d'aliments
-                  sains et nutritifs.
+                  Chez Bilik Farm, l'objectif est de développer progressivement un modèle agricole
+                  intégré, adapté au territoire et attentif à la qualité des productions futures.
                 </p>
                 <p>
-                  Pour atteindre cet objectif, nous avons adopté des techniques agricoles respectueuses de la
-                  nature et nous nous engageons à maintenir les normes de qualité les plus strictes dans tout
-                  ce que nous faisons.
+                  Les activités seront structurées par étapes, sans présenter de capacité, de volume
+                  ou de disponibilité tant qu'ils ne sont pas confirmés.
                 </p>
               </div>
 
@@ -127,18 +121,18 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
                 {[
                   {
                     icon: 'fas fa-recycle',
-                    title: 'Agriculture régénératrice',
-                    desc: 'Nous restaurons et enrichissons nos sols à chaque saison',
+                    title: 'Pratiques responsables',
+                    desc: 'Volonté de développer des pratiques attentives aux sols et aux ressources',
                   },
                   {
                     icon: 'fas fa-heart',
-                    title: 'Bien-être animal',
-                    desc: 'Chaque animal est élevé dans des conditions dignes et naturelles',
+                    title: 'Approche progressive',
+                    desc: "Structuration des activités d'élevage par étapes",
                   },
                   {
                     icon: 'fas fa-handshake',
                     title: 'Impact local',
-                    desc: "Nous créons des emplois et stimulons l'économie locale de Bilik",
+                    desc: "Objectif de contribuer au développement local",
                   },
                 ].map((v) => (
                   <div key={v.title} className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -190,34 +184,31 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
 
             {/* Text */}
             <div>
-              <span className="section-tag">Les hommes et femmes derrière la ferme</span>
+              <span className="section-tag">Réseau à structurer</span>
               <h2 className="text-4xl font-extrabold text-green-900 mt-4 mb-2 leading-tight">
-                Notre <span className="text-green-600">équipe</span>
+                Notre <span className="text-green-600">approche</span>
               </h2>
               <div className="section-divider" />
               <div className="space-y-4 text-gray-600 leading-relaxed mb-10">
                 <p>
-                  Notre équipe est le cœur battant de Bilik Farm. Composée d'agriculteurs passionnés,
-                  d'éleveurs attentionnés et de professionnels dédiés, chaque membre apporte son expertise
-                  unique et son dévouement à notre mission commune.
+                  Bilik Farm avance avec une approche progressive. Le projet doit structurer son réseau
+                  technique, ses partenaires et ses pratiques avant de communiquer sur des capacités
+                  commerciales.
                 </p>
                 <p>
-                  Chaque membre de notre équipe incarne nos valeurs de respect, d'intégrité et de durabilité.
-                  Nous croyons en un leadership axé sur la collaboration et le respect mutuel, où chacun est
-                  encouragé à contribuer et à s'épanouir.
+                  Les collaborations futures seront présentées uniquement lorsqu'elles seront confirmées.
                 </p>
                 <p>
-                  Ensemble, nous travaillons sans relâche pour garantir que chaque aspect de notre ferme
-                  reflète nos valeurs et notre engagement envers l'excellence.
+                  Cette prudence permet de conserver une communication claire, sobre et crédible.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {[
-                  { icon: 'fas fa-seedling', label: 'Agronomes qualifiés' },
-                  { icon: 'fas fa-fish',     label: 'Aquaculteurs certifiés' },
-                  { icon: 'fas fa-paw',      label: 'Vétérinaires partenaires' },
-                  { icon: 'fas fa-truck',    label: 'Logistique locale' },
+                  { icon: 'fas fa-seedling', label: 'Agriculture' },
+                  { icon: 'fas fa-fish',     label: 'Aquaculture' },
+                  { icon: 'fas fa-paw',      label: 'Élevage' },
+                  { icon: 'fas fa-handshake', label: 'Partenariats' },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-3 bg-green-50 rounded-xl px-4 py-3">
                     <i className={`${item.icon} text-green-600`}></i>
@@ -246,21 +237,20 @@ export default function AboutPage({ params }: { params: { locale: string } }) {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-tag text-green-300 border-green-700 bg-green-900/50 mb-6">
-            Venez nous voir
+            Nous contacter
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight">
-            Venez nous rendre visite
+            En savoir plus sur Bilik Farm
           </h2>
           <p className="text-green-200 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            Vous souhaitez découvrir Bilik Farm de près ? Contactez-nous pour planifier une visite
-            ou en savoir plus sur nos activités.
+            Contactez-nous pour demander des informations sur le projet ou proposer un partenariat.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href={`/${locale}/contact`} className="btn-white btn-lg">
               <i className="fas fa-envelope text-sm"></i> Nous contacter
             </Link>
             <Link href={`/${locale}/products`} className="btn-outline btn-lg">
-              <i className="fas fa-store text-sm"></i> Voir nos produits
+              <i className="fas fa-seedling text-sm"></i> Voir les filières ciblées
             </Link>
           </div>
         </div>

@@ -3,6 +3,45 @@
 Date : 2026-07-14
 Source : registre `bilik-farm-content-claims-register.md`
 
+## Matrice préalable BF-REPRISE-002B
+
+| Claim ID | Fichier | Route | Texte actuel | Action | Texte cible |
+| --- | --- | --- | --- | --- | --- |
+| CLM-001 | `frontend/src/app/layout.tsx` | toutes | Ferme agro-pastorale | reformuler | Projet agricole intégré en développement |
+| CLM-002, CLM-039, CLM-043, CLM-049, CLM-051, CLM-059, CLM-060 | layout, accueil, à propos | toutes, `/fr`, `/fr/about` | 40 hectares / 40 ha | remplacer | Première superficie d'environ 2,5 hectares dans la région du Centre au Cameroun |
+| CLM-003, CLM-004, CLM-007, CLM-030, CLM-033, CLM-052, CLM-072, CLM-073, CLM-074, CLM-076, CLM-079 | layout, header, accueil, services | toutes, `/fr`, services | Services commerciaux actifs | classer futur | Activités prévues, non proposées comme services commerciaux |
+| CLM-005, CLM-006, CLM-031, CLM-032, CLM-068, CLM-070, CLM-077, CLM-078 | header, accueil, produits, services | toutes, `/fr`, `/fr/products`, services | Produits ou ventes disponibles | reformuler | Filières ciblées, productions en développement |
+| CLM-008, CLM-034, CLM-066 | header, accueil, à propos | toutes, `/fr`, `/fr/about` | Experts, agronomes qualifiés, aquaculteurs certifiés | retirer ou atténuer | Approche progressive et demande d'informations |
+| CLM-009, CLM-040, CLM-057, CLM-062, CLM-063, CLM-064 | footer, accueil, à propos | toutes, `/fr`, `/fr/about` | Durabilité, agroécologie, régénératrice, impacts comme acquis | reformuler | Volonté de pratiques responsables et objectif de développement local |
+| CLM-010, CLM-011, CLM-013, CLM-014 | footer | toutes | Réseaux sociaux, liens `#`, téléphone et email non confirmés | retirer | Région du Centre, Cameroun et lien contact |
+| CLM-012 | footer | toutes | Bilik, Akono, Région Centre | reformuler | Région du Centre, Cameroun |
+| CLM-015 | footer | toutes | Copyright 2025 | remplacer | Année dynamique avec `new Date().getFullYear()` |
+| CLM-016 | contact | `/fr/contact` | Réponse rapide promise | atténuer | Message reçu, sans délai promis |
+| CLM-017, CLM-022, CLM-025, CLM-028, CLM-044, CLM-045, CLM-046, CLM-047, CLM-069 | accueil, produits | `/fr`, `/fr/products` | Effectifs, volumes et expérience chiffrés | retirer | Aucune valeur de remplacement |
+| CLM-018, CLM-020, CLM-024, CLM-050, CLM-061 | accueil, à propos | `/fr`, `/fr/about` | Qualité irréprochable, biologique, contrôle rigoureux | reformuler | Attention portée à la qualité, sans garantie absolue |
+| CLM-019, CLM-021, CLM-023, CLM-026, CLM-027, CLM-029 | accueil | `/fr` | Prix FCFA | remplacer | Informations sur demande |
+| CLM-035, CLM-036, CLM-037, CLM-054 | accueil | `/fr` | Témoignages nominatifs et satisfaction clients | retirer | Section supprimée |
+| CLM-038 | accueil | `/fr` | Bilik, Cameroun | reformuler | Région du Centre, Cameroun |
+| CLM-041, CLM-042 | accueil | `/fr` | Qualité garantie, livraison locale | retirer | Badges prudents sans garantie ni livraison |
+| CLM-048, CLM-058 | accueil, à propos | `/fr`, `/fr/about` | Fondateur nommé | reformuler | Projet porté par une vision locale, sans identité personnelle publiée |
+| CLM-053, CLM-067 | accueil, à propos | `/fr`, `/fr/about` | Visite proposée | reformuler | Contact pour en savoir plus |
+| CLM-055, CLM-080 | accueil, détail produit | `/fr`, `/fr/products/[id]` | Commande | remplacer | Demander des informations |
+| CLM-056 | à propos | `/fr/about` | Histoire, mission et équipe | reformuler | Présentation du projet et de ses axes de développement |
+| CLM-065 | à propos | `/fr/about` | Équipe complète dédiée | atténuer | Réseau et partenaires à structurer progressivement |
+| CLM-071 | produits | `/fr/products` | Surfaces par culture | retirer | Aucune surface par culture |
+| CLM-075 | provenderie | `/fr/services/feedmill` | Placeholder abreuvoir public | conserver temporairement | Mention maintenue comme placeholder technique déjà documenté |
+
+## Résultat BF-REPRISE-002B
+
+- Claims reformulés publiquement : 60.
+- Claims reclassés comme futurs : 11.
+- Claims retirés de l'interface publique : 8.
+- Claims conservés ou hors périmètre autorisé : 8.
+- Prix publics restants dans les pages autorisées : 0.
+- Témoignages nominatifs restants : 0.
+- CTA de commande ou devis restants : 0.
+- Coordonnées placeholders restantes dans les pages autorisées : 0.
+
 ## 1. Identité et statut juridique
 
 - Information affichée : Bilik Farm est une ferme agro-pastorale.

@@ -13,21 +13,8 @@ export function Footer() {
               <span className="text-xl font-bold">Bilik Farm</span>
             </div>
             <p className="text-green-200 text-sm leading-relaxed mb-5">
-              Bilik Farm s'engage à promouvoir l'agriculture durable et l'agroécologie au cœur du Cameroun.
+              Bilik Farm développe progressivement un projet agricole intégré dans la région du Centre au Cameroun.
             </p>
-            <div className="flex gap-3">
-              {[
-                { href: 'https://www.facebook.com/bilikfarm', icon: 'fab fa-facebook-f', label: 'Facebook' },
-                { href: 'https://www.instagram.com/bilikfarm', icon: 'fab fa-instagram', label: 'Instagram' },
-                { href: '#', icon: 'fab fa-youtube', label: 'YouTube' },
-                { href: '#', icon: 'fab fa-whatsapp', label: 'WhatsApp' },
-              ].map((s) => (
-                <a key={s.label} href={s.href} aria-label={s.label}
-                  className="w-9 h-9 rounded-full bg-green-800 hover:bg-green-600 flex items-center justify-center transition-colors">
-                  <i className={s.icon}></i>
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Col 2 — Navigation */}
@@ -49,14 +36,14 @@ export function Footer() {
 
           {/* Col 3 — Services */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Nos Services</h4>
+            <h4 className="font-semibold text-white mb-4">Axes du projet</h4>
             <ul className="space-y-2.5 text-sm text-green-200">
               {[
-                { href: '/fr/services/feedmill', label: 'Provenderie' },
-                { href: '/fr/services/animals', label: "Vente d'animaux" },
-                { href: '/fr/services/fresh-produce', label: 'Vente de vivres frais' },
-                { href: '/fr/services/hatchery', label: 'Écloserie' },
-                { href: '/fr/services/advisory', label: 'Conseils agricoles' },
+                { href: '/fr/services/feedmill', label: 'Provenderie prévue' },
+                { href: '/fr/services/animals', label: "Élevage en développement" },
+                { href: '/fr/services/fresh-produce', label: 'Cultures ciblées' },
+                { href: '/fr/services/hatchery', label: 'Écloserie prévue' },
+                { href: '/fr/services/advisory', label: 'Accompagnement futur' },
               ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="hover:text-white transition-colors">{l.label}</Link>
@@ -71,15 +58,10 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-green-200">
               <li className="flex items-start gap-2">
                 <i className="fas fa-map-marker-alt mt-0.5 text-green-400 shrink-0"></i>
-                Bilik, Akono, Région Centre, Cameroun
+                Région du Centre, Cameroun
               </li>
-              <li className="flex items-center gap-2">
-                <i className="fas fa-phone text-green-400 shrink-0"></i>
-                +237 XXX XXX XXX
-              </li>
-              <li className="flex items-center gap-2">
-                <i className="fas fa-envelope text-green-400 shrink-0"></i>
-                <a href="mailto:info@bilikfarm.com" className="hover:text-white transition-colors">info@bilikfarm.com</a>
+              <li>
+                <Link href="/fr/contact" className="hover:text-white transition-colors">Page contact</Link>
               </li>
             </ul>
           </div>
@@ -88,7 +70,7 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-green-800 py-5 text-center text-sm text-green-300">
-        © 2025 Bilik Farm. Tous droits réservés.
+        © {new Date().getFullYear()} Bilik Farm. Tous droits réservés.
       </div>
     </footer>
   );

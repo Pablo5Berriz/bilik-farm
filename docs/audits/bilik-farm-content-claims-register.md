@@ -12,6 +12,34 @@ Périmètre : frontend public, composants UI, contenu admin statique, seed backe
 - Contradictions détectées : 9
 - Statut par défaut : toute affirmation commerciale, chiffrée, opérationnelle ou testimonial est `À CONFIRMER` sans source officielle.
 
+## Mise à jour BF-REPRISE-002B
+
+Date : 2026-07-14
+SHA de départ : `e01aab6e74043c88852efef35ec38e7135407475`
+SHA cible : commit local `fix(content): remove unverified public claims`
+
+### Résolution des affirmations
+
+| Résolution BF-002B | Nombre |
+| --- | ---: |
+| REFORMULE PUBLIC | 60 |
+| RECLASSE FUTUR | 11 |
+| RETIRE PUBLIC | 8 |
+| CONSERVE OU HORS PERIMETRE | 8 |
+
+### Nouvelles statistiques de risque public
+
+| Indicateur | Nombre |
+| --- | ---: |
+| Affirmations publiques critiques restantes dans les fichiers autorisés | 0 |
+| Prix publics restants dans les pages autorisées | 0 |
+| Témoignages nominatifs restants | 0 |
+| CTA commerciaux restants | 0 |
+| Téléphones placeholders restants dans les pages autorisées | 0 |
+| Services futurs encore présentés comme actifs | 0 |
+
+Les textes précédents sont conservés dans le registre et dans `bilik-farm-content-source-map.csv`. Le CSV ajoute les colonnes `bf002b_resolution` et `bf002b_action` pour tracer l'action appliquée à chaque `claim_id`.
+
 ## Statistiques
 
 ### Par catégorie

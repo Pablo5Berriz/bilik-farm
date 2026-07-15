@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Nos Produits — Bilik Farm',
-  description: 'Découvrez tous les produits de Bilik Farm : œufs, poissons, viandes, fruits et légumes frais du Cameroun.',
+  title: 'Filières ciblées — Bilik Farm',
+  description: 'Découvrez les filières agricoles ciblées par Bilik Farm dans le cadre de son développement progressif.',
 };
 
 /* ─────────────────────────────────────────
@@ -20,25 +20,25 @@ const catalogue = [
         slug: 'oeufs-de-table',
         title: 'Œufs de table',
         image: '/images/oeufs.jpeg',
-        description: "Issus de nos 10 000 poules pondeuses, inspectés quotidiennement. ~266 alvéoles de 30 œufs produites par jour.",
-        price: '2 200 FCFA',
-        unit: '/ Alvéole',
+        description: "Filière avicole ciblée dans le développement progressif de Bilik Farm.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'poules-pondeuses',
         title: 'Poules pondeuses',
         image: '/images/pondeuses2.jpg',
-        description: "Mises en vente en fin de cycle de ponte. Élevées dans des poulaillers équipés de cages automatiques.",
-        price: '2 200 FCFA',
-        unit: '/ unité',
+        description: "Activité prévue, à confirmer selon la structuration réelle de l'élevage.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'poules-du-village',
         title: 'Poules du village',
         image: '/images/poule_village.jpeg',
-        description: "1 500 poules élevées en liberté dans un environnement naturel. Saveur authentique et qualité inégalée.",
-        price: '10 000 FCFA',
-        unit: '/ unité',
+        description: "Filière avicole envisagée, sans disponibilité commerciale confirmée.",
+        price: 'Informations sur demande',
+        unit: '',
       },
     ],
   },
@@ -53,25 +53,25 @@ const catalogue = [
         slug: 'carpes-fraiches',
         title: 'Carpes fraîches',
         image: '/images/carpe2.jpeg',
-        description: "Élevées dans nos étangs contrôlés. Chair délicieuse, texture fine et goût exceptionnel. 25 000 / vague.",
-        price: '2 500 FCFA',
-        unit: '/ Kg',
+        description: "Filière aquacole envisagée dans l'approche intégrée du projet.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'tilapias-frais',
         title: 'Tilapias frais',
         image: '/images/tilapia2.jpg',
-        description: "Chair tendre et savoureuse en eau pure. Idéaux pour les grillades, plats en sauce ou ceviches.",
-        price: '2 500 FCFA',
-        unit: '/ Kg',
+        description: "Production en développement dans les axes aquacoles ciblés.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'clarias-frais',
         title: 'Clarias frais',
         image: '/images/clarias3.jpg',
-        description: "Chair tendre et délicate issue d'un élevage soigné. Expérience gustative unique appréciée des fins palais.",
-        price: '2 500 FCFA',
-        unit: '/ Kg',
+        description: "Espèce envisagée dans les filières aquacoles futures.",
+        price: 'Informations sur demande',
+        unit: '',
       },
     ],
   },
@@ -86,17 +86,17 @@ const catalogue = [
         slug: 'lapins',
         title: 'Lapins',
         image: '/images/Lapin.jpeg',
-        description: "500 lapins élevés dans des enclos spacieux, nourris de foin et légumes frais. Viande tendre et savoureuse.",
-        price: '4 000 FCFA',
-        unit: '/ unité',
+        description: "Activité d'élevage prévue, sans effectif ni disponibilité publiés.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'viande-de-porc',
         title: 'Viande de porc',
         image: '/images/Porc.jpg',
-        description: "2 500 porcs élevés avec des aliments biologiques. Viande juteuse et savoureuse de qualité exceptionnelle.",
-        price: '2 800 FCFA',
-        unit: '/ Kg',
+        description: "Filière porcine envisagée dans une montée en puissance progressive.",
+        price: 'Informations sur demande',
+        unit: '',
       },
     ],
   },
@@ -111,56 +111,56 @@ const catalogue = [
         slug: 'mais-frais',
         title: 'Maïs frais',
         image: '/images/Mais.jpeg',
-        description: "Cultivé sur 20 ha. Récolté à la main à maturité optimale. Douceur naturelle et texture croquante garanties.",
-        price: '30 000 FCFA',
-        unit: '/ 100 Kg',
+        description: "Culture vivrière ciblée dans la première phase agricole du projet.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'avocats',
         title: 'Avocats',
         image: '/images/Avocat.jpeg',
-        description: "Sélectionnés pour leur onctuosité et leur goût riche. Cultivés sur 10 ha de terres fertiles à Bilik.",
-        price: '7 000 FCFA',
-        unit: '/ 100 Kg',
+        description: "Culture fruitière envisagée selon l'évolution du projet.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'safou',
         title: 'Safout (Prune africaine)',
         image: '/images/safou.jpg',
-        description: "Cueillis à maturité parfaite pour préserver leur texture fondante et leur saveur exotique unique.",
-        price: '10 000 FCFA',
-        unit: '/ 100 Kg',
+        description: "Filière fruitière ciblée, sans disponibilité commerciale confirmée.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'papayes',
         title: 'Papayes',
         image: '/images/Papaye.jpg',
-        description: "Mûries à point, juteuses et riches en vitamines. Parfaites pour les smoothies et salades de fruits tropicaux.",
-        price: '2 200 FCFA',
-        unit: '/ 100 Kg',
+        description: "Culture envisagée dans le développement maraîcher et fruitier.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'manioc',
         title: 'Manioc',
         image: '/images/manioc.jpg',
-        description: "Polyvalent et nourrissant, cultivé sur 25 ha. Base incontournable de la cuisine camerounaise traditionnelle.",
-        price: '25 000 FCFA',
-        unit: '/ 100 Kg',
+        description: "Culture vivrière ciblée dans le programme agricole.",
+        price: 'Informations sur demande',
+        unit: '',
       },
       {
         slug: 'bananes-douces',
         title: 'Bananes douces',
         image: '/images/Banane.jpg',
-        description: "Sélectionnées pour leur goût sucré et texture tendre. Source naturelle d'énergie cultivée sur 5 ha.",
-        price: '2 000 FCFA',
+        description: "Culture fruitière envisagée, sans surface publiée.",
+        price: 'Informations sur demande',
         unit: '',
       },
       {
         slug: 'plantains',
         title: 'Plantains',
         image: '/images/plantain.jpg',
-        description: "Cultivés sur 25 ha. Polyvalents — frits, bouillis ou grillés. Saveur subtilement sucrée et texture satisfaisante.",
-        price: '3 000 FCFA',
+        description: "Culture vivrière ciblée, à développer progressivement.",
+        price: 'Informations sur demande',
         unit: '',
       },
     ],
@@ -192,10 +192,10 @@ export default function ProductsPage({ params }: { params: { locale: string } })
             <span className="text-white/90">Nos Produits</span>
           </nav>
           <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-5">
-            Nos <span className="text-green-400">Produits</span>
+            Filières <span className="text-green-400">ciblées</span>
           </h1>
           <p className="text-lg text-white/70 max-w-xl leading-relaxed">
-            Des produits frais et de qualité supérieure, cultivés et élevés avec soin à Bilik Farm.
+            Les éléments ci-dessous présentent des productions envisagées, sans disponibilité commerciale confirmée.
           </p>
 
           {/* Category anchors */}
@@ -237,7 +237,7 @@ export default function ProductsPage({ params }: { params: { locale: string } })
                 <div className="section-divider" />
               </div>
               <p className="text-sm text-gray-400">
-                {cat.products.length} produit{cat.products.length > 1 ? 's' : ''} disponible{cat.products.length > 1 ? 's' : ''}
+                {cat.products.length} filière{cat.products.length > 1 ? 's' : ''} ciblée{cat.products.length > 1 ? 's' : ''}
               </p>
             </div>
 
@@ -299,21 +299,21 @@ export default function ProductsPage({ params }: { params: { locale: string } })
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="section-tag text-green-300 border-green-700 bg-green-900/50 mb-6">
-            Passez commande
+            Demander des informations
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight">
-            Vous souhaitez passer commande ?
+            Vous souhaitez en savoir plus ?
           </h2>
           <p className="text-green-200 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            Contactez-nous directement pour discuter de vos besoins et obtenir un devis personnalisé.
+            Contactez-nous pour demander des informations ou proposer un partenariat.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href={`/${locale}/contact`} className="btn-white btn-lg">
               <i className="fas fa-envelope text-sm"></i> Nous contacter
             </Link>
-            <a href="tel:+237000000000" className="btn-outline btn-lg">
-              <i className="fas fa-phone text-sm"></i> Appeler directement
-            </a>
+            <Link href={`/${locale}/about`} className="btn-outline btn-lg">
+              <i className="fas fa-seedling text-sm"></i> Découvrir le projet
+            </Link>
           </div>
         </div>
       </section>
