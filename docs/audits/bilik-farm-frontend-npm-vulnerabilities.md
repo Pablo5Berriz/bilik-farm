@@ -215,3 +215,7 @@ Ouvrir un lot PM distinct pour choisir entre :
 1. upgrade majeur Next/ESLint vers versions corrigees, avec validation lint, typecheck, build et runtime;
 2. mitigation d'exposition serveur en conservant l'etat statique du MVP;
 3. acceptation temporaire documentee des risques dev-only `glob`/ESLint jusqu'au prochain lot de dependances.
+
+## Préflight de remédiation
+
+Le préflight de stratégie est documenté dans `docs/audits/bilik-farm-frontend-npm-remediation-preflight.md`.
