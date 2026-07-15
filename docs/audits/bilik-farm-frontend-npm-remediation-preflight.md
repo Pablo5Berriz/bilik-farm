@@ -219,65 +219,57 @@ Intérêt sécurité :
 
 ## 10. Contrôles compensatoires
 
-Contrôles immédiats applicables sans modification dans ce lot :
-
-- ne pas exposer de serveur de développement;
-- ne pas traiter de données non fiables dans le frontend;
-- limiter les requêtes au reverse proxy si `next start` est exposé;
-- appliquer des délais, limites de corps et limites de débit au niveau proxy;
-- maintenir l'absence de routes API actives;
-- maintenir l'absence de middleware complexe;
-- ne pas configurer `images.remotePatterns` sans décision;
-- ne pas utiliser `next/image` remote optimizer avant correction;
-- ne pas exécuter le CLI `glob` avec des arguments externes;
-- limiter le lint au code du dépôt;
-- ne pas accepter de CSS utilisateur;
-- isoler le service Next;
-- réviser la décision avant toute ouverture à des contributions externes non fiables.
+- Ne pas exposer le serveur de développement.
+- Ne pas traiter de données non fiables dans le frontend.
+- Limiter les requêtes, délais, tailles de corps et débits au reverse proxy lorsque `next start` est utilisé.
+- Maintenir l’absence de routes API actives.
+- Maintenir l’absence de middleware complexe et de rewrites.
+- Ne pas activer d’optimisation d’images distantes sans décision.
+- Ne pas exécuter le CLI `glob` avec des arguments externes.
+- Limiter le lint au code contrôlé du dépôt.
+- Ne pas accepter de CSS ou de styles arbitraires provenant d’utilisateurs.
+- Isoler le service Next.
+- Réexaminer la décision avant toute contribution externe non fiable.
 
 ## 11. Recommandation
 
 ### MESURE IMMÉDIATE DE MITIGATION
 
-Préparer un lot d’export statique contrôlé, sans changement de dépendance initial, afin de réduire l’exposition d’un serveur Next 14 public.
+Préparer un lot d’export statique contrôlé, sans changement initial de dépendance, afin de supprimer l’exposition publique d’un serveur Next 14.
 
-Cette mesure ne corrige ni les dépendances vulnérables ni les entrées `npm audit`. Elle réduit uniquement l’exposition runtime liée à `next start`.
+Cette mesure ne corrige ni les dépendances vulnérables ni les entrées `npm audit`. Elle réduit uniquement la surface d’exposition runtime liée à `next start`.
 
 Classement : **POSSIBLE AVEC ADAPTATIONS MINEURES**.
 
-Fichiers susceptibles d'être modifiés dans ce prochain lot :
+Fichiers susceptibles d’être modifiés dans le lot d’export :
 
 - `frontend/next.config.js`;
-- routes dynamiques sous `frontend/src/app/[locale]`;
+- les routes dynamiques sous `frontend/src/app/[locale]`;
 - éventuellement `frontend/src/app/page.tsx`;
-- scripts npm si une commande export/serve statique est retenue.
+- les scripts npm nécessaires à la validation de l’export.
 
 Tests requis :
 
-- `npm run lint`;
-- `tsc --noEmit`;
-- `npm run build`;
-- validation des routes exportées;
-- validation des images locales;
-- validation navigation et formulaire désactivé.
-
-Procédure de retour arrière :
-
-- revert du commit d'export statique;
-- retour au mode `next start`;
-- conservation du rapport de risque.
+- lint;
+- typecheck;
+- build;
+- validation de toutes les routes exportées;
+- validation des assets et images locales;
+- validation de la navigation;
+- validation du formulaire désactivé.
 
 Conditions de GO :
 
-- routes dynamiques exportables avec paramètres finis;
-- aucun besoin serveur confirmé;
-- validation runtime statique complète.
+- paramètres statiques finis pour toutes les routes dynamiques;
+- aucun besoin serveur réel;
+- build statique complet;
+- validation fonctionnelle de l’export.
 
 Conditions de NO-GO :
 
-- besoin serveur App Router réel;
-- route dynamique non exportable sans refonte;
-- régression de navigation ou d'assets.
+- route dynamique non exportable sans refonte importante;
+- dépendance réelle au runtime serveur;
+- régression de navigation ou d’assets.
 
 ### REMÉDIATION TECHNIQUE REQUISE
 
@@ -285,90 +277,73 @@ Planifier ensuite une migration coordonnée vers une version Next 15 corrigée.
 
 Version minimale commune candidate : `15.5.16`.
 
-Une version plus récente de la même branche, telle que `15.5.20`, pourra être évaluée dans le lot de migration, sans passage automatique à Next 16.
+Une version plus récente de la même branche, telle que `15.5.20`, pourra être évaluée sans passage automatique à Next 16.
 
-La migration devra également :
+La migration devra :
 
 - vérifier l’instance PostCSS embarquée par Next;
 - mettre à jour séparément l’instance PostCSS directe;
 - aligner `eslint-config-next`;
 - confirmer la disparition ou non de `glob@10.3.10`;
-- relancer les audits complet et production.
+- relancer les audits complet et production;
+- valider lint, typecheck, build et runtime.
 
 ### STRATÉGIE DE REPLI
 
-Maintenir temporairement Next 14 derrière les contrôles compensatoires documentés, sans exposition publique non maîtrisée, uniquement si l’export statique ou la migration sont bloqués.
+Maintenir temporairement Next 14 derrière les contrôles compensatoires documentés, sans exposition publique non maîtrisée, uniquement si l’export statique et la migration sont bloqués.
 
 ### STRATÉGIES REJETÉES
 
-- Mise à jour corrective dans Next 14 : rejetée, aucune version Next 14 corrigée disponible.
-- Migration directe Next 16 : rejetée à ce stade, car Node `>=20.9.0` est requis et `eslint-config-next@16` impose ESLint 9.
-- `npm audit fix --force` : rejeté, car il force une migration majeure sans analyse de régression.
-- Override manuel de `postcss` embarqué par Next : rejeté sans preuve de compatibilité.
+- Mise à jour corrective dans Next 14 : aucune version corrigée disponible.
+- Migration directe et automatique vers Next 16 : risque de régression trop élevé.
+- `npm audit fix --force` : migration majeure non contrôlée.
+- Override manuel de PostCSS embarqué par Next : compatibilité non démontrée.
 
 ### PRÉREQUIS
 
-- décision PM sur priorité : mitigation d'exposition ou correction lockfile;
+- décision PM sur le lot d’export statique;
 - environnement Node cible confirmé;
-- maintien du backend/admin en quarantaine;
-- aucun ajout d'API ou middleware avant décision.
+- backend et admin maintenus en quarantaine;
+- aucune nouvelle API ou middleware avant décision.
 
 ### RISQUES RÉSIDUELS
 
-- tant que `next@14.2.35` reste installé, `npm audit` continuera de signaler les advisories runtime;
-- tant que `eslint-config-next@14.2.35` reste installé, `glob@10.3.10` restera signalé en dev;
-- tant que `postcss@8.5.8` direct reste installé, il reste dans la plage `<8.5.10`;
-- l'export statique réduit l'exposition serveur mais ne nettoie pas l'audit npm.
+- `next@14.2.35` demeure signalé tant qu’il n’est pas migré;
+- `eslint-config-next@14.2.35` conserve le chemin vulnérable vers `glob`;
+- les deux instances PostCSS restent inférieures à `8.5.10`;
+- l’export statique ne nettoie pas le lockfile.
 
 ### PROCHAIN LOT PROPOSÉ
 
-`BF-REPRISE-005C - Faisabilité et prototype d'export statique frontend`
-
-Objectif : modifier uniquement la configuration et les routes nécessaires pour produire un export statique validé, sans toucher aux versions de dépendances.
+`BF-REPRISE-005C — Prototype contrôlé d’export statique frontend`
 
 ## 12. Plan du prochain lot
 
-1. Ajouter ou ajuster la configuration `output: 'export'` dans un lot dédié.
-2. Définir les paramètres statiques pour locales et produits.
-3. Clarifier la route `blog/[slug]` actuellement `notFound()`.
-4. Remplacer ou valider la redirection racine.
-5. Construire et servir l'export statique.
-6. Comparer les routes demandées et les assets.
-7. Décider ensuite si une migration Next 15 reste nécessaire pour nettoyer le lockfile.
+1. Configurer temporairement `output: 'export'`.
+2. Définir les paramètres statiques pour les locales.
+3. Définir les paramètres statiques pour les produits.
+4. Résoudre le cas de `blog/[slug]`.
+5. Valider ou remplacer la redirection racine.
+6. Construire l’export.
+7. Servir les fichiers statiques sans `next start`.
+8. Tester les routes, assets, images et liens.
+9. Documenter le GO ou le NO-GO.
 
 ## 13. Commandes exécutées
 
-```powershell
-git status --short --branch
-git rev-parse HEAD
-npm audit --json > npm-audit-full.json
-npm audit --omit=dev --json > npm-audit-prod.json
-npm ls next postcss eslint eslint-config-next @next/eslint-plugin-next glob --all
-npm view next@14 version
-npm view next@15 version
-npm view next@16 version
-npm view eslint-config-next@14 version
-npm view eslint-config-next@15 version
-npm view eslint-config-next@16 version
-npm view next@14.2.35 engines peerDependencies dependencies
-npm view next@15.5.16 engines peerDependencies dependencies
-npm view next@15.5.20 engines peerDependencies dependencies
-npm view next@16.2.10 engines peerDependencies dependencies
-npm view eslint-config-next@14.2.35 peerDependencies dependencies
-npm view eslint-config-next@15.5.16 peerDependencies dependencies
-npm view eslint-config-next@15.5.20 peerDependencies dependencies
-npm view eslint-config-next@16.2.10 peerDependencies dependencies
-npm view @next/eslint-plugin-next@15.5.16 dependencies
-npm view @next/eslint-plugin-next@15.5.20 dependencies
-npm view @next/eslint-plugin-next@16.2.10 dependencies
-npm view glob@10.5.0 version engines
-npm view postcss@8.5.10 version engines
-rg -n "cookies\(|headers\(|draftMode\(|revalidate|dynamic\s*=|force-dynamic|generateStaticParams|notFound\(|redirect\(|middleware|ImageResponse|next/headers|next/server|next/image|remotePatterns|rewrites|beforeInteractive|WebSocket|upgrade|route\.ts" frontend/src frontend
-```
+- Vérification Git initiale.
+- Audits npm complet et production.
+- Inspection de l’arbre de dépendances.
+- Lecture des versions disponibles dans le registre npm.
+- Inspection des surfaces dynamiques Next.js.
+- Lint.
+- Typecheck.
+- Build.
+- Vérification du diff.
 
 ## 14. Confirmation de non-modification
 
-Aucune modification effectuée sur :
+Aucune modification n’a été effectuée sur :
 
 - `frontend/package.json`;
 - `frontend/package-lock.json`;
@@ -378,4 +353,4 @@ Aucune modification effectuée sur :
 - `backend/**`;
 - `admin/**`.
 
-Les fichiers temporaires `npm-audit-full.json` et `npm-audit-prod.json` doivent être supprimés avant commit.
+Les fichiers temporaires d’audit ont été supprimés avant le commit.

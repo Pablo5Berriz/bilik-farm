@@ -113,7 +113,7 @@ Risque restant :
 
 - le projet utilise App Router et `next start`; les vulnerabilites DoS/cache touchant les Server Components ou le rendu Next restent a considerer si le site est expose publiquement en mode serveur.
 
-Voies de correction possibles :
+Voies de correction :
 
 - decision PM pour upgrade Next vers une version corrigee compatible, avec lot de migration dedie;
 - si l'objectif reste strictement statique, etudier une sortie statique ou un mode d'hebergement qui reduit l'exposition serveur;
@@ -132,33 +132,33 @@ Voies de correction possibles :
 
 Environnements :
 
-- `8.4.31` : runtime/build interne de Next;
+- `8.4.31` : runtime et build internes de Next;
 - `8.5.8` : chaîne CSS et build du projet.
 
 Comptage npm audit :
 
 - l’audit complet associe l’entrée `postcss` aux chemins direct et transitif;
 - l’audit production conserve uniquement le chemin embarqué par Next;
-- le nombre d’entrées npm ne correspond pas nécessairement au nombre d’instances physiques installées.
+- le nombre d’entrées npm ne correspond pas nécessairement au nombre d’instances installées.
 
 Exploitabilité observée :
 
-- faible dans l’état actuel, car le CSS est contrôlé dans le dépôt;
-- aucune génération de CSS depuis une entrée utilisateur n’a été identifiée;
+- faible dans l’état actuel, car les sources CSS sont contrôlées dans le dépôt;
+- aucune génération CSS depuis une entrée utilisateur n’a été identifiée;
 - aucune route API ne reçoit de CSS arbitraire.
 
 Risque restant :
 
 - l’instance embarquée par Next reste utilisée lors du build et potentiellement dans le runtime Next;
-- l’instance directe reste utilisée dans la chaîne CSS/build;
+- l’instance directe reste utilisée dans la chaîne CSS et le build;
 - l’export statique ne supprime aucune des deux versions du lockfile.
 
 Voies de correction :
 
-- migration contrôlée de Next pour corriger ou remplacer son instance embarquée;
-- mise à jour contrôlée du PostCSS direct vers une version non affectée;
-- audit complet et production après installation;
-- refus de tout CSS ou style arbitraire provenant d’utilisateurs.
+- migrer Next de façon contrôlée pour remplacer ou corriger son instance embarquée;
+- mettre à jour le PostCSS direct vers une version non affectée;
+- relancer les audits complet et production après installation;
+- refuser tout CSS ou style arbitraire provenant d’utilisateurs.
 
 ### 3. `eslint-config-next`
 
@@ -173,28 +173,28 @@ Risque restant :
 
 - exposition locale/CI si des commandes lint executent du contenu non fiable ou des chemins manipules par un attaquant.
 
-Voies de correction possibles :
+Voies de correction :
 
 - upgrade coordonne de l'outillage ESLint/Next lorsque PM autorise;
 - limiter l'execution lint a du code source controle.
 
 ### 4. `@next/eslint-plugin-next`
 
-- Type : transitif via `eslint-config-next`.
+- Type : dépendance transitive de `eslint-config-next`.
 - Version installee : `14.2.35`.
 - Severite npm agregee : `high`.
 - Environnement : dev lint.
 - Cause : depend de `glob@10.3.10`.
 - Exploitabilite reelle dans ce MVP : **faible en production**, identique a l'entree ESLint.
 
-Voies de correction possibles :
+Voies de correction :
 
 - upgrade de `eslint-config-next` vers une version dont l'arbre transitif n'inclut plus le `glob` vulnerable;
 - a evaluer avec compatibilite Next, car `npm audit` propose `eslint-config-next@16.2.10`, changement majeur.
 
 ### 5. `glob`
 
-- Type : transitif via `@next/eslint-plugin-next`.
+- Type : dépendance transitive de `@next/eslint-plugin-next`.
 - Version installee : `10.3.10`.
 - Severite npm : `high`.
 - Advisory : injection de commande dans le CLI `glob` via `-c/--cmd`.
@@ -205,7 +205,7 @@ Risque restant :
 
 - devient pertinent si un script local ou CI expose le CLI `glob` a des arguments non fiables.
 
-Voies de correction possibles :
+Voies de correction :
 
 - upgrade transitif via `eslint-config-next`;
 - eviter tout usage direct du CLI `glob -c/--cmd`.
