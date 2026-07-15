@@ -29,6 +29,7 @@
 | --- | --- | --- | --- | --- |
 | `next@14.2.35` | oui | runtime/build | high | Advisories Next.js multiples, dont DoS RSC, image optimizer, request smuggling/cache, SSRF WebSocket |
 | `postcss@8.4.31` sous `next` | non | runtime/build via Next | moderate | XSS en stringify CSS pour versions `<8.5.10` |
+| `postcss@8.5.8` direct | oui | build CSS | moderate dans l'audit complet | Même plage `<8.5.10`; absent de l'audit prod car omis avec les dépendances dev |
 | `eslint-config-next@14.2.35` | oui | dev lint | high | Depend de `@next/eslint-plugin-next` vulnerable via `glob` |
 | `@next/eslint-plugin-next@14.2.35` | non | dev lint | high | Depend de `glob@10.3.10` |
 | `glob@10.3.10` | non | dev lint | high | Injection de commande dans le CLI `glob` via `-c/--cmd` |
@@ -56,7 +57,12 @@ bilik-farm-frontend
   `-- postcss@8.5.8 deduped
 ```
 
-Note : le `postcss` direct du projet est `8.5.8`, donc hors plage vulnerable `<8.5.10` uniquement selon npm audit, mais l'instance embarquee par `next` est `8.4.31`.
+Note : le projet contient deux instances de PostCSS inférieures à `8.5.10` :
+
+- `8.4.31` embarquée par Next;
+- `8.5.8` déclarée directement pour la chaîne CSS.
+
+L'audit complet signale `postcss` avec les nœuds `node_modules/next/node_modules/postcss` et `node_modules/postcss`. L'audit production ne conserve que l'instance embarquée par Next, car l'instance directe relève de la chaîne build/dev.
 
 ## Surfaces applicatives observees
 
@@ -113,14 +119,14 @@ Voies de correction possibles :
 - si l'objectif reste strictement statique, etudier une sortie statique ou un mode d'hebergement qui reduit l'exposition serveur;
 - conserver l'absence de middleware, rewrites, remote image optimizer et API routes tant qu'aucune correction Next n'est validee.
 
-### 2. `postcss` via `next`
+### 2. `postcss`
 
-- Type : transitif via `next`.
-- Version concernee : `8.4.31` sous `node_modules/next/node_modules/postcss`.
+- Type : direct et transitif via `next`.
+- Versions concernées : `8.4.31` sous `node_modules/next/node_modules/postcss` et `8.5.8` sous `node_modules/postcss`.
 - Severite npm : `moderate`.
 - Advisory : XSS via `</style>` non echappe dans CSS stringify pour versions `<8.5.10`.
-- Environnement : build/runtime interne Next.
-- Exploitabilite reelle dans ce MVP : **faible dans l'etat observe**.
+- Environnement : runtime/build interne Next pour `8.4.31`; build CSS/dev pour `8.5.8`.
+- Exploitabilite reelle dans ce MVP : **à distinguer par environnement**.
 
 Facteurs reduisant l'exposition :
 
@@ -130,11 +136,13 @@ Facteurs reduisant l'exposition :
 
 Risque restant :
 
-- depend de l'usage interne Next; corrige proprement par mise a jour de Next ou de sa dependance embarquee.
+- l'instance embarquée par Next reste pertinente tant que `next start` ou le build Next sont utilisés;
+- l'instance directe reste pertinente pour la chaîne CSS/build, même si elle n'apparaît pas dans l'audit production.
 
 Voies de correction possibles :
 
-- corriger via upgrade Next lorsque PM autorise un lot dependances;
+- corriger l'instance directe via mise à jour contrôlée de `postcss` lorsque PM autorise un lot dépendances;
+- corriger ou confirmer l'instance embarquée via upgrade Next ou audit post-installation;
 - ne pas accepter de CSS ou style arbitraire provenant d'utilisateurs.
 
 ### 3. `eslint-config-next`

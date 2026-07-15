@@ -35,6 +35,8 @@ Entrées production :
 - `next`
 - `postcss` embarqué par `next`
 
+Point PostCSS R1 : l'audit complet signale `postcss` comme direct avec deux nœuds vulnérables, `node_modules/postcss` et `node_modules/next/node_modules/postcss`. L'audit production ne conserve que `node_modules/next/node_modules/postcss`.
+
 ## 3. Advisories uniques
 
 Les 5 entrées npm correspondent à 16 advisories uniques :
@@ -47,7 +49,7 @@ Les 5 entrées npm correspondent à 16 advisories uniques :
 | GHSA-ggv3-7p47-pfv8 | `next` | moderate | 14.2.35 | `>=9.5.0 <15.5.13` | 15.5.13 | `next` direct | runtime | oui |
 | GHSA-3x4c-7xq6-9pq8 | `next` | moderate | 14.2.35 | `>=10.0.0 <15.5.14` | 15.5.14 | `next` direct | runtime | oui |
 | GHSA-q4gf-8mx6-v5v3 | `next` | high | 14.2.35 | `>=13.0.0 <15.5.15` | 15.5.15 | `next` direct | runtime | oui |
-| GHSA-qx2v-qp2m-jg93 | `postcss` | moderate | 8.4.31 via Next | `<8.5.10` | 8.5.10 | `next -> postcss` | runtime/build | à confirmer |
+| GHSA-qx2v-qp2m-jg93 | `postcss` | moderate | 8.4.31 via Next et 8.5.8 direct | `<8.5.10` | 8.5.10 | `next -> postcss` et `postcss` direct | runtime/build et build CSS | à confirmer par correction séparée |
 | GHSA-8h8q-6873-q5fj | `next` | high | 14.2.35 | `>=13.0.0 <15.5.16` | 15.5.16 | `next` direct | runtime | oui |
 | GHSA-3g8h-86w9-wvmq | `next` | low | 14.2.35 | `>=12.2.0 <15.5.16` | 15.5.16 | `next` direct | runtime | oui |
 | GHSA-ffhc-5mcf-pf4q | `next` | moderate | 14.2.35 | `>=13.4.0 <15.5.16` | 15.5.16 | `next` direct | runtime | oui |
@@ -68,7 +70,7 @@ Arbre simplifié :
 bilik-farm-frontend
 +-- next@14.2.35                       direct, production
 | `-- postcss@8.4.31                   transitif, production/build
-+-- postcss@8.5.8                      direct, développement/build, hors plage vulnérable auditée
++-- postcss@8.5.8                      direct, développement/build, dans la plage vulnérable <8.5.10
 +-- eslint@8.57.1                      direct, développement
 +-- eslint-config-next@14.2.35         direct, développement
 | +-- @next/eslint-plugin-next@14.2.35 transitif, développement
@@ -90,6 +92,13 @@ Développement uniquement :
 - `eslint-config-next@14.2.35`
 - `@next/eslint-plugin-next@14.2.35`
 - `glob@10.3.10`
+
+Instances PostCSS :
+
+| Version | Parent | Directe/transitive | Dev/prod | Dans la plage `<8.5.10` | Signalée par npm audit | Explication |
+| --- | --- | --- | --- | --- | --- | --- |
+| 8.4.31 | `next@14.2.35` | transitive | production/build | OUI | audit complet et audit production | Instance embarquée par Next, conservée avec `--omit=dev` |
+| 8.5.8 | racine, `autoprefixer`, `tailwindcss` | directe et dédupliquée | build CSS/dev | OUI | audit complet uniquement | Dépendance directe du projet, supprimée de l'audit production par `--omit=dev`; l'audit complet l'inclut dans les nœuds vulnérables |
 
 ## 5. Versions corrigées disponibles
 
@@ -114,7 +123,7 @@ Table de décision par advisory :
 | GHSA-ggv3-7p47-pfv8 | `next` | 14.2.35 | 15.5.13 | non | migration Next 15+ |
 | GHSA-3x4c-7xq6-9pq8 | `next` | 14.2.35 | 15.5.14 | non | migration Next 15+ |
 | GHSA-q4gf-8mx6-v5v3 | `next` | 14.2.35 | 15.5.15 | non | migration Next 15+ |
-| GHSA-qx2v-qp2m-jg93 | `postcss` via Next | 8.4.31 | 8.5.10 | non via Next 14 | à confirmer, éviter override risqué |
+| GHSA-qx2v-qp2m-jg93 | `postcss` via Next et direct | 8.4.31 / 8.5.8 | 8.5.10 | direct oui si autorisé, embarqué Next non via Next 14 | corriger direct séparément; confirmer Next après migration |
 | GHSA-8h8q-6873-q5fj | `next` | 14.2.35 | 15.5.16 | non | migration Next 15+ |
 | GHSA-3g8h-86w9-wvmq | `next` | 14.2.35 | 15.5.16 | non | migration Next 15+ |
 | GHSA-ffhc-5mcf-pf4q | `next` | 14.2.35 | 15.5.16 | non | migration Next 15+ |
@@ -138,7 +147,7 @@ Métadonnées :
 - `next@15.5.20` : mêmes exigences générales que `15.5.16`, dépendance `postcss@8.4.31`.
 - `next@16.2.10` : Node `>=20.9.0`, React peer `^18.2.0 || ... || ^19.0.0`, dépendance déclarée `postcss@8.4.31`.
 
-Point important : les versions candidates Next 15/16 lues au registre déclarent encore `postcss@8.4.31`. La correction effective du `postcss` embarqué doit donc être vérifiée dans un lot de remédiation par audit post-installation, sans supposer qu'un upgrade de Next élimine cette entrée.
+Point important : les versions candidates Next 15/16 lues au registre déclarent encore `postcss@8.4.31`. La correction effective du `postcss` embarqué doit donc être vérifiée dans un lot de remédiation par audit post-installation, sans supposer qu'un upgrade de Next élimine cette entrée. L'instance directe `postcss@8.5.8` est également dans la plage `<8.5.10`; sa correction pourrait être traitée par une mise à jour directe contrôlée de `postcss`, mais ce lot ne modifie aucune dépendance.
 
 ## 7. Compatibilité ESLint
 
@@ -200,12 +209,13 @@ Intérêt sécurité :
 
 ## 9. Comparaison des stratégies
 
-| Stratégie | Sécurité | Régression | Effort | Corrige runtime | Corrige dev | Recommandation |
-| --- | ---: | ---: | ---: | --- | --- | --- |
-| A - Mise à jour corrective dans Next 14 | faible | faible | faible | non, aucune version Next 14 corrigée trouvée | non | rejetée |
-| B - Migration Next 15 ou 16 | élevée si audit post-upgrade propre | moyenne à élevée | moyen | oui pour advisories Next avec Next 15.5.16+, PostCSS à confirmer | oui si ESLint aligné 15+, 16 impose ESLint 9 | stratégie de repli |
-| C - Export statique | élevée pour l'exposition serveur | moyenne | moyen | mitige fortement sans corriger lockfile | non | recommandée en premier |
-| D - Acceptation temporaire documentée | faible à moyenne | faible | faible | non | non | acceptable seulement court terme |
+| Stratégie | Réduit l'exposition runtime | Corrige Next | Corrige PostCSS | Corrige ESLint/glob | Régression | Effort | Recommandation |
+| --- | --- | --- | --- | --- | ---: | ---: | --- |
+| A - Mise à jour corrective dans Next 14 | non | non | non | non | faible | faible | rejetée |
+| B - Export statique | oui | non | non | non | moyenne | moyen | mitigation immédiate recommandée |
+| C - Migration Next 15 corrigée | oui/partiellement | oui, cible minimale commune `15.5.16` | à vérifier dans l'arbre cible; direct `postcss` à corriger séparément | non nécessairement | moyenne | moyen | remédiation technique requise ensuite |
+| D - Migration coordonnée Next + ESLint | oui | oui | à vérifier | oui si `eslint-config-next` 15+ retire `glob` | moyenne à élevée | moyen à élevé | stratégie complète de repli |
+| E - Acceptation temporaire documentée | non | non | non | non | faible | faible | temporaire seulement |
 
 ## 10. Contrôles compensatoires
 
@@ -227,11 +237,13 @@ Contrôles immédiats applicables sans modification dans ce lot :
 
 ## 11. Recommandation
 
-### STRATÉGIE RECOMMANDÉE
+### MESURE IMMÉDIATE DE MITIGATION
 
-Préparer un lot d'export statique contrôlé, sans changement de dépendance initial, afin de réduire l'exposition serveur du MVP.
+Préparer un lot d'export statique contrôlé, sans changement de dépendance initial, afin de réduire l'exposition d'un serveur Next 14 public.
 
 Classement : **POSSIBLE AVEC ADAPTATIONS MINEURES**.
+
+Cette mesure ne corrige pas les dépendances vulnérables et ne fera pas disparaître les entrées `npm audit`. Elle réduit l'exploitabilité runtime liée à l'exposition de `next start`.
 
 Fichiers susceptibles d'être modifiés dans ce prochain lot :
 
@@ -267,16 +279,23 @@ Conditions de NO-GO :
 - route dynamique non exportable sans refonte;
 - régression de navigation ou d'assets.
 
-### STRATÉGIE DE REPLI
+### REMÉDIATION TECHNIQUE REQUISE
 
-Planifier une migration Next 15 ciblée vers `15.5.16` ou supérieur, idéalement `15.5.20`, avec `eslint-config-next` aligné sur la même branche.
+Préparer ensuite une migration coordonnée vers une version Next 15 corrigée et un arbre ESLint compatible.
+
+Version Next minimale commune candidate : `15.5.16`, car c'est le seuil le plus élevé parmi les plages Next observées. Une cible plus récente de la même branche, comme `15.5.20`, peut être étudiée dans le lot de remédiation sans passer automatiquement à Next 16.
 
 Cette stratégie corrige les advisories Next selon les plages d'audit, mais doit confirmer après installation :
 
 - statut `npm audit --omit=dev`;
 - statut `npm audit`;
 - présence ou absence persistante de `postcss@8.4.31`;
+- correction de l'instance directe `postcss@8.5.8`;
 - compatibilité lint/build/runtime.
+
+### STRATÉGIE DE REPLI
+
+Maintenir temporairement Next 14 uniquement derrière des contrôles compensatoires, sans exposition publique non maîtrisée.
 
 ### STRATÉGIES REJETÉES
 
@@ -296,6 +315,7 @@ Cette stratégie corrige les advisories Next selon les plages d'audit, mais doit
 
 - tant que `next@14.2.35` reste installé, `npm audit` continuera de signaler les advisories runtime;
 - tant que `eslint-config-next@14.2.35` reste installé, `glob@10.3.10` restera signalé en dev;
+- tant que `postcss@8.5.8` direct reste installé, il reste dans la plage `<8.5.10`;
 - l'export statique réduit l'exposition serveur mais ne nettoie pas l'audit npm.
 
 ### PROCHAIN LOT PROPOSÉ
