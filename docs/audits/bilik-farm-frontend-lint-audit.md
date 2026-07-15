@@ -239,21 +239,26 @@ Ce fichier a ete remplace par le rapport R1 complet.
 - `frontend/src/app/[locale]/services/fresh-produce/page.tsx`
 - `frontend/src/app/[locale]/services/hatchery/page.tsx`
 
-## 18. Verification du diff
+## 18. Vérification du diff
 
-A verifier avant commit :
+- `git diff --check` : PASS.
+- Diff limité aux fichiers autorisés.
+- Aucun fichier backend ou admin modifié.
+- Aucun changement de version de Next.js, React, React DOM ou TypeScript.
+- Aucun changement volontaire de rendu ou de contenu métier.
 
-- `git diff --check`
-- `git diff --stat`
-- `git diff`
+## 19. Commit créé
 
-## 19. Commit cree
+- Commit : `0a37f413d3a742aa0e44057e205c6ff95bf5de7c`
+- Message : `build(frontend): configure reproducible eslint`
+- Amend utilisé : non.
+- Push effectué : non.
 
-A renseigner apres commit.
+## 20. SHA et état final
 
-## 20. SHA et etat final
-
-A renseigner apres commit.
+- Branche : `main`
+- SHA final : `0a37f413d3a742aa0e44057e205c6ff95bf5de7c`
+- Working tree après le commit technique : propre.
 
 ## 21. Ecarts ou incidents
 
@@ -263,4 +268,4 @@ A renseigner apres commit.
 
 ## 22. Confirmation d'arret
 
-Arret apres mise en place du lint, corrections sures, validations techniques, rapport, verification Git et commit. Aucun audit de vulnerabilites n'est commence.
+Le present correctif synchronise la preuve documentaire avec l'execution technique deja terminee au commit `0a37f413d3a742aa0e44057e205c6ff95bf5de7c`. Aucun audit de vulnerabilites n'est commence.
