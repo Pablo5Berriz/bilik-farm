@@ -10,7 +10,7 @@ Verdict technique : **ACCEPTE**.
 
 Le lint frontend est maintenant explicite, non interactif et reproductible. Les erreurs ESLint applicatives initiales ont ete corrigees uniquement lorsqu'elles etaient sans impact visuel attendu. Les avertissements restants sont documentes et reportes.
 
-## 2. SHA et etat initial
+## 2. SHA et état initial
 
 - Branche initiale : `main`
 - SHA initial : `b510bb1fbe426bd365fe86a00d88ae7be4ebaeca`
@@ -54,7 +54,7 @@ Resultat :
 - Aucune mise a niveau de `next`, `react`, `react-dom` ou `typescript` dans `package.json`.
 - `npm audit fix`, `npm update`, `--force` et `--legacy-peer-deps` non utilises.
 
-Note hors lot : npm signale `5 vulnerabilities` apres installation. Aucun travail de vulnerabilites n'a ete lance.
+Note hors lot : npm signale `5 vulnerabilities` après installation. Aucun travail de vulnérabilités n'a été lancé.
 
 ## 6. Configuration ESLint
 
@@ -271,4 +271,4 @@ Ce fichier a ete remplace par le rapport R1 complet.
 
 Le lint frontend reproductible a été établi, les corrections sûres ont été appliquées, puis le typecheck, le build et la validation runtime ont réussi.
 
-Le rapport a été finalisé par un correctif documentaire distinct. Aucun audit ni correctif de vulnérabilités n’a été lancé.
+Le rapport a été finalisé par des correctifs documentaires distincts. Aucun audit ni correctif de vulnérabilités n’a été lancé.
