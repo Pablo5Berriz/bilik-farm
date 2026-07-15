@@ -122,28 +122,43 @@ Voies de correction possibles :
 ### 2. `postcss`
 
 - Type : direct et transitif via `next`.
-- Versions concernées : `8.4.31` sous `node_modules/next/node_modules/postcss` et `8.5.8` sous `node_modules/postcss`.
-- Severite npm : `moderate`.
-- Advisory : XSS via `</style>` non echappe dans CSS stringify pour versions `<8.5.10`.
-- Environnement : runtime/build interne Next pour `8.4.31`; build CSS/dev pour `8.5.8`.
-- Exploitabilite reelle dans ce MVP : **à distinguer par environnement**.
+- Versions concernées :
+  - `8.4.31` sous `node_modules/next/node_modules/postcss`;
+  - `8.5.8` sous `node_modules/postcss`.
+- Sévérité npm : `moderate`.
+- Advisory : `GHSA-qx2v-qp2m-jg93`.
+- Plage affectée : `<8.5.10`.
+- Les deux versions installées sont dans la plage affectée.
 
-Facteurs reduisant l'exposition :
+Environnements :
 
-- CSS source controle dans le repo;
-- pas de generation CSS depuis contenu utilisateur;
-- pas de route API active recevant CSS arbitraire.
+- `8.4.31` : runtime/build interne de Next;
+- `8.5.8` : chaîne CSS et build du projet.
+
+Comptage npm audit :
+
+- l’audit complet associe l’entrée `postcss` aux chemins direct et transitif;
+- l’audit production conserve uniquement le chemin embarqué par Next;
+- le nombre d’entrées npm ne correspond pas nécessairement au nombre d’instances physiques installées.
+
+Exploitabilité observée :
+
+- faible dans l’état actuel, car le CSS est contrôlé dans le dépôt;
+- aucune génération de CSS depuis une entrée utilisateur n’a été identifiée;
+- aucune route API ne reçoit de CSS arbitraire.
 
 Risque restant :
 
-- l'instance embarquée par Next reste pertinente tant que `next start` ou le build Next sont utilisés;
-- l'instance directe reste pertinente pour la chaîne CSS/build, même si elle n'apparaît pas dans l'audit production.
+- l’instance embarquée par Next reste utilisée lors du build et potentiellement dans le runtime Next;
+- l’instance directe reste utilisée dans la chaîne CSS/build;
+- l’export statique ne supprime aucune des deux versions du lockfile.
 
-Voies de correction possibles :
+Voies de correction :
 
-- corriger l'instance directe via mise à jour contrôlée de `postcss` lorsque PM autorise un lot dépendances;
-- corriger ou confirmer l'instance embarquée via upgrade Next ou audit post-installation;
-- ne pas accepter de CSS ou style arbitraire provenant d'utilisateurs.
+- migration contrôlée de Next pour corriger ou remplacer son instance embarquée;
+- mise à jour contrôlée du PostCSS direct vers une version non affectée;
+- audit complet et production après installation;
+- refus de tout CSS ou style arbitraire provenant d’utilisateurs.
 
 ### 3. `eslint-config-next`
 

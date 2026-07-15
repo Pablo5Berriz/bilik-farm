@@ -209,13 +209,13 @@ Intérêt sécurité :
 
 ## 9. Comparaison des stratégies
 
-| Stratégie | Réduit l'exposition runtime | Corrige Next | Corrige PostCSS | Corrige ESLint/glob | Régression | Effort | Recommandation |
+| Stratégie | Réduit l’exposition runtime | Corrige Next | Corrige PostCSS | Corrige ESLint/glob | Régression | Effort | Recommandation |
 | --- | --- | --- | --- | --- | ---: | ---: | --- |
-| A - Mise à jour corrective dans Next 14 | non | non | non | non | faible | faible | rejetée |
-| B - Export statique | oui | non | non | non | moyenne | moyen | mitigation immédiate recommandée |
-| C - Migration Next 15 corrigée | oui/partiellement | oui, cible minimale commune `15.5.16` | à vérifier dans l'arbre cible; direct `postcss` à corriger séparément | non nécessairement | moyenne | moyen | remédiation technique requise ensuite |
-| D - Migration coordonnée Next + ESLint | oui | oui | à vérifier | oui si `eslint-config-next` 15+ retire `glob` | moyenne à élevée | moyen à élevé | stratégie complète de repli |
-| E - Acceptation temporaire documentée | non | non | non | non | faible | faible | temporaire seulement |
+| A — Mise à jour corrective dans Next 14 | Non | Non | Non | Non | Faible | Faible | Rejetée |
+| B — Export statique | Oui | Non | Non | Non | Moyenne | Moyen | Mitigation immédiate recommandée |
+| C — Migration Next 15 corrigée | Oui/partiellement | Oui, à partir de la cible commune validée | À confirmer dans l’arbre cible; PostCSS direct à corriger séparément | Non nécessairement | Moyenne | Moyen | Remédiation runtime requise |
+| D — Migration coordonnée Next + ESLint | Oui | Oui | À confirmer après installation | Oui si l’arbre cible retire `glob` vulnérable | Moyenne à élevée | Moyen à élevé | Remédiation complète candidate |
+| E — Acceptation temporaire documentée | Non | Non | Non | Non | Faible | Faible | Repli temporaire uniquement |
 
 ## 10. Contrôles compensatoires
 
@@ -239,11 +239,11 @@ Contrôles immédiats applicables sans modification dans ce lot :
 
 ### MESURE IMMÉDIATE DE MITIGATION
 
-Préparer un lot d'export statique contrôlé, sans changement de dépendance initial, afin de réduire l'exposition d'un serveur Next 14 public.
+Préparer un lot d’export statique contrôlé, sans changement de dépendance initial, afin de réduire l’exposition d’un serveur Next 14 public.
+
+Cette mesure ne corrige ni les dépendances vulnérables ni les entrées `npm audit`. Elle réduit uniquement l’exposition runtime liée à `next start`.
 
 Classement : **POSSIBLE AVEC ADAPTATIONS MINEURES**.
-
-Cette mesure ne corrige pas les dépendances vulnérables et ne fera pas disparaître les entrées `npm audit`. Elle réduit l'exploitabilité runtime liée à l'exposition de `next start`.
 
 Fichiers susceptibles d'être modifiés dans ce prochain lot :
 
@@ -281,21 +281,23 @@ Conditions de NO-GO :
 
 ### REMÉDIATION TECHNIQUE REQUISE
 
-Préparer ensuite une migration coordonnée vers une version Next 15 corrigée et un arbre ESLint compatible.
+Planifier ensuite une migration coordonnée vers une version Next 15 corrigée.
 
-Version Next minimale commune candidate : `15.5.16`, car c'est le seuil le plus élevé parmi les plages Next observées. Une cible plus récente de la même branche, comme `15.5.20`, peut être étudiée dans le lot de remédiation sans passer automatiquement à Next 16.
+Version minimale commune candidate : `15.5.16`.
 
-Cette stratégie corrige les advisories Next selon les plages d'audit, mais doit confirmer après installation :
+Une version plus récente de la même branche, telle que `15.5.20`, pourra être évaluée dans le lot de migration, sans passage automatique à Next 16.
 
-- statut `npm audit --omit=dev`;
-- statut `npm audit`;
-- présence ou absence persistante de `postcss@8.4.31`;
-- correction de l'instance directe `postcss@8.5.8`;
-- compatibilité lint/build/runtime.
+La migration devra également :
+
+- vérifier l’instance PostCSS embarquée par Next;
+- mettre à jour séparément l’instance PostCSS directe;
+- aligner `eslint-config-next`;
+- confirmer la disparition ou non de `glob@10.3.10`;
+- relancer les audits complet et production.
 
 ### STRATÉGIE DE REPLI
 
-Maintenir temporairement Next 14 uniquement derrière des contrôles compensatoires, sans exposition publique non maîtrisée.
+Maintenir temporairement Next 14 derrière les contrôles compensatoires documentés, sans exposition publique non maîtrisée, uniquement si l’export statique ou la migration sont bloqués.
 
 ### STRATÉGIES REJETÉES
 
