@@ -78,6 +78,26 @@ SHA cible : commit local `refactor(frontend): make mvp fully static`
 
 Le frontend public du MVP ne dépend plus d'un backend runtime. Les pages produit sont informatives, la page blog est statique et les détails d'articles retournent une erreur 404 contrôlée tant qu'aucun contenu officiel n'est validé.
 
+## Mise à jour BF-REPRISE-003B
+
+Date : 2026-07-14
+SHA de départ : `2c71630f716964759f8f5e32e1e7a27da2323386`
+SHA cible : commit local `security(repo): quarantine non-mvp modules`
+
+### Quarantaine backend et admin
+
+| Point traité | Statut |
+| --- | --- |
+| Compte administrateur fictif du seed | SUPPRIMÉ |
+| Mot de passe faible codé en dur | SUPPRIMÉ |
+| Produit, prix et stock fictifs du seed | SUPPRIMÉS |
+| Effet métier du seed | NEUTRALISÉ |
+| README backend hors MVP | CRÉÉ |
+| README admin hors MVP | CRÉÉ |
+| Document de quarantaine sécurité | CRÉÉ |
+
+Le seed backend ne crée plus de compte, produit, prix, stock, commande, témoignage ou donnée commerciale. Le backend et l'admin restent conservés pour analyse future, mais sont explicitement exclus du MVP exécutable.
+
 ## Statistiques
 
 ### Par catégorie

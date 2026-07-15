@@ -62,6 +62,14 @@ Source : registre `bilik-farm-content-claims-register.md`
 - Backend, admin, CMS, API et base de données classés hors MVP initial.
 - Périmètre MVP statique documenté dans `docs/architecture/bilik-farm-mvp-static-scope.md`.
 
+## Résultat BF-REPRISE-003B
+
+- Seed backend remplacé par un seed de quarantaine sans effet métier.
+- Identifiant administrateur fictif et mot de passe faible supprimés du seed.
+- Prix, stock et produit fictifs supprimés du seed.
+- Backend et admin documentés comme hors périmètre MVP et non exécutables.
+- Document de quarantaine créé dans `docs/security/bilik-farm-non-mvp-quarantine.md`.
+
 ## 1. Identité et statut juridique
 
 - Information affichée : Bilik Farm est une ferme agro-pastorale.

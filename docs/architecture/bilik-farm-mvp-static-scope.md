@@ -51,3 +51,7 @@ Le MVP initial de Bilik Farm est une vitrine frontend statique et autonome.
 - maintenance du contenu dans le code pour le MVP;
 - backend et admin reportés à une phase dédiée;
 - toute réactivation dynamique nécessite une nouvelle décision PM.
+
+## Quarantaine du code hors MVP
+
+Les répertoires `backend/` et `admin/` restent dans le dépôt, mais ne font pas partie du produit exécutable. Ils ne doivent pas être installés, démarrés ou déployés sans directive PM.
