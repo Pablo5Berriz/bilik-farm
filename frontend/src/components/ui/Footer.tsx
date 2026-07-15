@@ -24,7 +24,7 @@ export function Footer() {
               {[
                 { href: '/fr', label: 'Accueil' },
                 { href: '/fr/about', label: 'À propos' },
-                { href: '/fr/products', label: 'Nos Produits' },
+                { href: '/fr/products', label: 'Filières ciblées' },
                 { href: '/fr/contact', label: 'Contactez-nous' },
               ].map((l) => (
                 <li key={l.href}>

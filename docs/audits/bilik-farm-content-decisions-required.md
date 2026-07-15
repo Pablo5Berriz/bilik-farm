@@ -52,6 +52,16 @@ Source : registre `bilik-farm-content-claims-register.md`
 - Aucun appel `fetch` vers `/api/contact` ne subsiste dans le formulaire.
 - Aucun état de succès simulé n'est affiché.
 
+## Résultat BF-REPRISE-003A-R1
+
+- `frontend/src/lib/api.ts` supprimé car inutilisé.
+- Fiche produit rendue totalement statique.
+- Liste blog rendue statique avec message d'actualités à venir.
+- Détail blog neutralisé par 404 contrôlé.
+- `dangerouslySetInnerHTML` supprimé.
+- Backend, admin, CMS, API et base de données classés hors MVP initial.
+- Périmètre MVP statique documenté dans `docs/architecture/bilik-farm-mvp-static-scope.md`.
+
 ## 1. Identité et statut juridique
 
 - Information affichée : Bilik Farm est une ferme agro-pastorale.

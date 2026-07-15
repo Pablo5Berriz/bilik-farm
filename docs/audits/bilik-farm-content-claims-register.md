@@ -58,6 +58,26 @@ SHA cible : commit local `fix(frontend): disable unverified contact flow`
 
 Le formulaire de contact reste visible pour préserver la mise en page, mais ses champs et son bouton sont désactivés. Aucune donnée utilisateur n'est envoyée, stockée ou transmise tant qu'un backend de contact n'est pas validé.
 
+## Mise à jour BF-REPRISE-003A-R1
+
+Date : 2026-07-14
+SHA de départ : `2aed963c828630683dc3bcff30bba4f2a664dea6`
+SHA cible : commit local `refactor(frontend): make mvp fully static`
+
+### Autonomie statique du frontend
+
+| Point traité | Statut |
+| --- | --- |
+| `frontend/src/lib/api.ts` | SUPPRIMÉ |
+| Appel API produit | SUPPRIMÉ |
+| Appels API blog | SUPPRIMÉS |
+| `dangerouslySetInnerHTML` blog | SUPPRIMÉ |
+| Blog dynamique | DÉSACTIVÉ |
+| Détail blog | 404 CONTRÔLÉ |
+| Backend et admin | HORS MVP |
+
+Le frontend public du MVP ne dépend plus d'un backend runtime. Les pages produit sont informatives, la page blog est statique et les détails d'articles retournent une erreur 404 contrôlée tant qu'aucun contenu officiel n'est validé.
+
 ## Statistiques
 
 ### Par catégorie

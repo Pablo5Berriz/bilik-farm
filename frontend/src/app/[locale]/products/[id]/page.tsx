@@ -9,23 +9,8 @@ function formatTitle(slug: string) {
     .join(' ');
 }
 
-async function getProduct(slug: string) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products/${slug}`,
-      { next: { revalidate: 60 } } as RequestInit,
-    );
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
-  }
-}
-
-export default async function ProductDetailPage({ params }: { params: { locale: string; id: string } }) {
-  const product = await getProduct(params.id);
-  const title = product?.name ?? formatTitle(params.id);
-  const description = product?.description ?? "Cette page présente une filière ciblée par Bilik Farm. Les informations commerciales, la disponibilité et les prix seront communiqués uniquement après confirmation.";
+export default function ProductDetailPage({ params }: { params: { locale: string; id: string } }) {
+  const title = formatTitle(params.id);
 
   return (
     <Container className="py-12">
@@ -36,7 +21,9 @@ export default async function ProductDetailPage({ params }: { params: { locale: 
         <div>
           <h1 className="text-3xl font-bold text-green-900 mb-4">{title}</h1>
           <p className="text-2xl font-semibold text-green-700 mb-6">Informations sur demande</p>
-          <p className="text-gray-600 mb-8">{description}</p>
+          <p className="text-gray-600 mb-8">
+            Cette page présente une filière ciblée par Bilik Farm. Les informations commerciales et la disponibilité seront communiquées uniquement après validation.
+          </p>
           <Link href={`/${params.locale}/contact`} className="btn-primary w-full text-center block">
             Demander des informations
           </Link>
