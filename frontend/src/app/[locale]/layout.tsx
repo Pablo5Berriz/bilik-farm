@@ -1,6 +1,10 @@
 import { Header } from '@/components/ui/Header';
 import { Footer } from '@/components/ui/Footer';
 
+export function generateStaticParams() {
+  return [{ locale: 'fr' }];
+}
+
 export default function LocaleLayout({
   children,
   params,

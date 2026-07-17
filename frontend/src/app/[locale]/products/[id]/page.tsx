@@ -1,6 +1,28 @@
 import { Container } from '@/components/ui/Container';
 import Link from 'next/link';
 
+const productIds = [
+  'oeufs-de-table',
+  'poules-pondeuses',
+  'poules-du-village',
+  'carpes-fraiches',
+  'tilapias-frais',
+  'clarias-frais',
+  'lapins',
+  'viande-de-porc',
+  'mais-frais',
+  'avocats',
+  'safou',
+  'papayes',
+  'manioc',
+  'bananes-douces',
+  'plantains',
+];
+
+export function generateStaticParams() {
+  return productIds.map((id) => ({ id }));
+}
+
 function formatTitle(slug: string) {
   return slug
     .split('-')
