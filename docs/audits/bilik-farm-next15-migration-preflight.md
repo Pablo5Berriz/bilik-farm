@@ -1,148 +1,146 @@
 # Préflight de migration Next.js 15 — Bilik Farm
 
-## Baseline
+## 1. Baseline
 
-Lot : BF-REPRISE-006A — Préflight de migration Next.js 15, finalisé après reprises documentaires.
+Lot : BF-REPRISE-006A — Préflight de migration Next.js 15 finalisé après reprises documentaires.
+
 - Branche : `main`.
-- Baseline Git de finalisation : `12a41ed2e520fdcfe23975d52e986d134c42337d`.
+- Baseline Git de finalisation : `610eaada5d4b1ecd710c90f77930794e97b9d0a9`.
 - Next actuel : `14.2.35`.
-- Export actuel : `output: 'export'` avec `trailingSlash: true`.
-- Node.js contrôlé : `22.17.1`.
-- Périmètre : migration frontend étroite vers Next 15, sans Next 16.
+- React : `18.3.1`.
+- React DOM : `18.3.1`.
+- `eslint-config-next` : `14.2.35`.
+- ESLint : `8.57.1`.
+- TypeScript résolu : `5.9.3`.
+- Node de validation : `22.17.1`.
+- Export : `output: 'export'`.
+- Trailing slash : `true`.
 
-## Cibles techniques
+## 2. Cibles techniques
 
-- Next : `14.2.35` vers `15.5.20`.
-- `eslint-config-next` : `14.2.35` vers `15.5.20`.
-- PostCSS direct : `8.5.8` vers `8.5.19`; seuil corrigé identifié : `8.5.10`.
-- React : conserver `18.3.1`.
-- React DOM : conserver `18.3.1`.
-- ESLint : conserver `8.57.1`.
-- TypeScript résolu : conserver `5.9.3`.
+- Next : `15.5.20`.
+- `eslint-config-next` : `15.5.20`.
+- PostCSS direct : `8.5.19`.
+- React : `18.3.1` conservé.
+- React DOM : `18.3.1` conservé.
+- ESLint : `8.57.1` conservé.
+- TypeScript : `5.9.3` conservé.
 
-Les métadonnées npm vérifient l'existence de `next@15.5.20`, `eslint-config-next@15.5.20` et `postcss@8.5.19`. Next `15.5.20` accepte React et React DOM `^18.2.0` ou `^19.0.0`. `eslint-config-next@15.5.20` accepte ESLint 7, 8 ou 9 et TypeScript `>=3.3.1`.
+Next 16, React 19 et ESLint 9 sont hors périmètre.
 
-Références : [migration Next 15](https://nextjs.org/docs/app/guides/upgrading/version-15), [export statique Next 15](https://nextjs.org/docs/15/pages/guides/static-exports), [Next.js 15.5](https://nextjs.org/blog/next-15-5).
-
-## Matrice des dépendances
+## 3. Matrice des dépendances
 
 | Dépendance | Version actuelle ou déclarée | Cible | Statut | Action |
 | --- | --- | --- | --- | --- |
 | `next` | `14.2.35` | `15.5.20` | obligatoire | migrer la dépendance directe |
-| `eslint-config-next` | `14.2.35` | `15.5.20` | obligatoire | aligner sur la cible Next |
+| `eslint-config-next` | `14.2.35` | `15.5.20` | obligatoire | aligner sur Next |
 | `@next/eslint-plugin-next` | `14.2.35` transitive | `15.5.20` transitive | automatique | laisser `eslint-config-next` résoudre le plugin |
 | `glob` | `10.3.10` transitive | absent du chemin cible observé | automatique | confirmer avec `npm ls` et les audits |
 | `postcss` direct | `8.5.8` | `8.5.19` | obligatoire | migrer la dépendance directe |
-| `postcss` transitif de Next | `8.4.31` déclaré sous Next | à observer après installation | conditionnel | aucune action avant inspection de l'arbre réellement installé |
+| `postcss` transitif de Next | `8.4.31` déclaré par Next `15.5.20` | à observer après installation | conditionnel | aucune avant inspection de l'arbre réellement installé |
 | `react` | `18.3.1` | `18.3.1` | conservé | aucune mise à niveau |
 | `react-dom` | `18.3.1` | `18.3.1` | conservé | aucune mise à niveau |
 | `eslint` | `8.57.1` | `8.57.1` | conservé | aucune mise à niveau |
 | `typescript` | `5.9.3` résolue | `5.9.3` | conservé | aucune mise à niveau |
 
-## Matrice de sécurité
-
-Baseline `npm audit` : cinq entrées agrégées, soit une moderate et quatre high.
+## 4. Matrice de sécurité
 
 | Problème logique | État actuel | Traitement projeté | Contrôle requis |
 | --- | --- | --- | --- |
-| Next | `next@14.2.35` affecté par les avis recensés | migrer vers `15.5.20` | audits complet et production après installation |
-| PostCSS direct | `8.5.8`, affecté car `<8.5.10` | migrer vers `8.5.19` | vérifier la version résolue et le build CSS |
-| PostCSS transitif de Next | Next `15.5.20` déclare PostCSS `8.4.31` | état à déterminer après installation | `npm ls postcss`; audits; STOP et retour PM si une version `<8.5.10` subsiste; aucun override automatique |
-| Chaîne ESLint | `eslint-config-next@14.2.35` et plugin associé | migrer la configuration vers `15.5.20` | confirmer l'arbre avec `npm ls` et l'audit complet |
-| Glob transitif | `glob@10.3.10` via le plugin actuel | le chemin cible observé utilise `fast-glob` | confirmer la disparition du chemin vulnérable |
+| `next` | `14.2.35` affecté par les avis recensés | migrer vers `15.5.20` | audits complet et production après installation |
+| `postcss` direct | `8.5.8`, affecté car `<8.5.10` | migrer vers `8.5.19` | vérifier la version résolue et le build CSS |
+| `postcss` transitif de Next | Next `15.5.20` déclare PostCSS `8.4.31`; l'arbre réel reste inconnu | inspecter après installation | `npm ls postcss` et audits; si une version `<8.5.10` subsiste, STOP et retour PM; aucun override automatique |
+| `eslint-config-next / @next/eslint-plugin-next` | chaîne actuelle `14.2.35` | migrer vers `15.5.20` | confirmer l'arbre et l'audit complet |
+| `glob` | `10.3.10` via le plugin actuel | disparition attendue du chemin vulnérable | confirmer avec `npm ls` et l'audit complet |
 
-Projection : la migration coordonnée vers Next `15.5.20` et `eslint-config-next@15.5.20` doit traiter les entrées directement liées à Next et à la chaîne ESLint concernée. PostCSS direct sera mis à niveau séparément vers `8.5.19`. L'état du PostCSS transitif sera déterminé uniquement après installation et inspection de l'arbre réel. Aucune décision d'override n'est préautorisée.
+Projection : La migration coordonnée doit traiter les entrées liées à Next et à la chaîne ESLint identifiée. PostCSS direct sera migré vers `8.5.19`. L'état du PostCSS transitif sera déterminé exclusivement après installation et inspection de l'arbre réel. Aucun override n'est préautorisé.
 
-## Impact code Next 15
-
-Next 15 rend `params` asynchrone dans les pages et layouts App Router. Les six fichiers existants suivants doivent recevoir une seule adaptation : typer `params` comme une promesse et résoudre sa valeur avant utilisation.
+## 5. Impact code Next 15
 
 | Fichier | État actuel | Adaptation prévue | Risque |
 | --- | --- | --- | --- |
-| `frontend/src/app/[locale]/layout.tsx` | `params: { locale: string }` | `params: Promise<{ locale: string }>` puis `await params` | faible |
-| `frontend/src/app/[locale]/page.tsx` | `params: { locale: string }` | `params: Promise<{ locale: string }>` puis `await params` | faible |
-| `frontend/src/app/[locale]/about/page.tsx` | `params: { locale: string }` | `params: Promise<{ locale: string }>` puis `await params` | faible |
-| `frontend/src/app/[locale]/products/page.tsx` | `params: { locale: string }` | `params: Promise<{ locale: string }>` puis `await params` | faible |
-| `frontend/src/app/[locale]/products/[id]/page.tsx` | `params: { locale: string; id: string }` | type Promise puis utiliser l'objet résolu | faible à moyen |
-| `frontend/src/app/[locale]/services/feedmill/page.tsx` | `params: { locale: string }` | `params: Promise<{ locale: string }>` puis `await params` | faible |
+| `frontend/src/app/[locale]/layout.tsx` | `params: { locale: string }` | typer `params` comme Promise et résoudre avant utilisation | faible |
+| `frontend/src/app/[locale]/page.tsx` | `params: { locale: string }` | typer `params` comme Promise et résoudre avant utilisation | faible |
+| `frontend/src/app/[locale]/about/page.tsx` | `params: { locale: string }` | typer `params` comme Promise et résoudre avant utilisation | faible |
+| `frontend/src/app/[locale]/products/page.tsx` | `params: { locale: string }` | typer `params` comme Promise et résoudre avant utilisation | faible |
+| `frontend/src/app/[locale]/products/[id]/page.tsx` | `params: { locale: string; id: string }` | typer `params` comme Promise et utiliser l'objet résolu | faible à moyen |
+| `frontend/src/app/[locale]/services/feedmill/page.tsx` | `params: { locale: string }` | typer `params` comme Promise et résoudre avant utilisation | faible |
 
-Aucun `searchParams`, `cookies()`, `headers()`, `draftMode()`, `notFound()` ou `redirect()` actif n'a été identifié.
+## 6. Compatibilité de l’export statique
 
-## Compatibilité de l'export statique
+La migration doit conserver une seule fois les propriétés suivantes :
 
-La cible Next 15 conserve les mécanismes nécessaires :
-
-- `output: 'export'` et génération de `out/` par `next build`;
+- `output: 'export'`;
 - `trailingSlash: true`;
-- `generateStaticParams` pour `fr` et les 15 identifiants produits;
-- service par un serveur de fichiers statiques;
-- absence de dépendance à `next start`.
+- `generateStaticParams`;
+- génération de `out/`;
+- service par serveur de fichiers statiques;
+- absence de `next start`.
 
-Les 26 routes publiques, les liens internes et les assets devront être retestés après migration.
+## 7. Plan BF-REPRISE-006B
 
-## Plan unique pour BF-REPRISE-006B
+### Phase 1 — Migration
 
-### Phase 1 — Migration autorisée
-
-1. Migrer `next` vers `15.5.20`.
-2. Migrer `eslint-config-next` vers `15.5.20`.
-3. Migrer PostCSS direct vers `8.5.19`.
+1. `next` → `15.5.20`.
+2. `eslint-config-next` → `15.5.20`.
+3. PostCSS direct → `8.5.19`.
 4. Conserver React `18.3.1`.
 5. Conserver React DOM `18.3.1`.
 6. Conserver ESLint `8.57.1`.
-7. Adapter les six usages de `params` nécessaires.
-8. Régénérer normalement `package-lock.json`, sans `--force`, sans `--legacy-peer-deps` et sans `audit fix`.
+7. Adapter les six signatures `params`.
+8. Régénérer normalement le lockfile.
 
-### Phase 2 — Inspection obligatoire
+### Phase 2 — Inspection
 
-9. Exécuter `npm ls`.
-10. Exécuter `npm ls postcss`.
-11. Exécuter les audits complet et production.
+9. `npm ls`.
+10. `npm ls postcss`.
+11. `npm audit`.
+12. `npm audit --omit=dev`.
 
 ### Gate PostCSS
 
-- Si aucune version PostCSS `<8.5.10` ne subsiste : **CONTINUER**.
-- Si une version PostCSS `<8.5.10` subsiste : **STOP IMMÉDIAT**.
+- Si aucune version `<8.5.10` ne subsiste : **CONTINUER**.
+- Si une version `<8.5.10` subsiste : **STOP ET RETOUR PM**.
 
-En cas d'arrêt, retourner au PM l'arbre `npm ls postcss`, l'origine exacte de la version, l'audit complet et l'audit production. Aucun override ne doit être appliqué.
+Aucun override.
 
-### Phase 3 — Validation si le gate autorise la poursuite
+### Phase 3 — Validation
 
-12. Exécuter le lint.
-13. Exécuter le typecheck.
-14. Exécuter le build.
-15. Vérifier `out/`.
-16. Servir `out/` depuis un serveur statique.
-17. Tester toutes les routes.
-18. Tester les liens.
-19. Tester les assets.
+13. Lint.
+14. Typecheck.
+15. Build.
+16. Contrôle de `out/`.
+17. Serveur statique.
+18. Tests des routes.
+19. Tests des liens.
+20. Tests des assets.
 
-## Risques et rollback
+## 8. Risques et rollback
 
 | Risque | Contrôle | Critère d'arrêt ou rollback |
 | --- | --- | --- |
-| typage asynchrone de `params` | typecheck et build | erreur de type ou route non générée |
-| régression de l'export | inventaire de `out/` et tests HTTP | page absente, 404/500 ou navigation cassée |
-| nouvelles règles lint | comparaison avec la baseline | nouvelle erreur non traitable dans le périmètre |
-| PostCSS transitif vulnérable | `npm ls postcss` et audits | STOP et retour PM |
-| arbre npm inattendu | `npm ls` et audits | peer conflict ou dépendance non autorisée |
+| migration `params` | typecheck et build | erreur de type ou route non générée |
+| lockfile | `npm ls` et diff | conflit de peers ou dépendance hors périmètre |
+| PostCSS direct | build CSS et audit | erreur de build ou régression CSS |
+| PostCSS transitif | `npm ls postcss` et audits | version `<8.5.10` : STOP et retour PM |
+| export statique | inventaire de `out/` et tests HTTP | page absente, 404/500, lien ou asset cassé |
 
-Rollback : restaurer ensemble `package.json`, `package-lock.json` et les six adaptations `params` au moyen d'un commit de réversion explicite, puis refaire lint, typecheck, build et validation statique.
+Rollback : revenir au SHA précédant le futur lot de migration `BF-REPRISE-006B`, restaurer ensemble les dépendances, le lockfile et les six signatures `params`, puis refaire les validations.
 
-## Hors périmètre
+## 9. Hors périmètre
 
+- Next 16;
 - React 19;
 - ESLint 9;
-- Next 16;
 - Turbopack;
 - flat config ESLint;
-- correction des 27 avertissements `no-img-element`;
+- correction des 27 warnings `no-img-element`;
 - backend;
 - admin;
-- refonte UI;
-- changements métier;
+- UI;
+- contenu métier;
 - override PostCSS sans nouvelle directive PM.
 
-## Verdict technique
+## 10. Verdict technique
 
-**CANDIDAT À MIGRATION ÉTROITE.** Le gate PostCSS impose une inspection après installation et interdit tout override automatique.
+CANDIDAT À MIGRATION CONTRÔLÉE SOUS AUTORISATION PM
