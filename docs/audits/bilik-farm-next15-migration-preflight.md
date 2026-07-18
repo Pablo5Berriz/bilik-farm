@@ -28,6 +28,19 @@ Raisons :
 
 Références officielles : [guide de migration Next 15](https://nextjs.org/docs/app/guides/upgrading/version-15), [export statique Next 15](https://nextjs.org/docs/15/pages/guides/static-exports), [Next.js 15.5](https://nextjs.org/blog/next-15-5).
 
+### Relevé npm de reprise BF-REPRISE-006A-R1
+
+Métadonnées relues directement sur le registre npm le 17 juillet 2026 :
+
+- `npm view postcss version` retourne `8.5.19` ;
+- `npm view postcss versions --json` contient `8.5.19` ;
+- `npm view postcss@8.5.19 version dist.tarball dist.integrity --json` retourne la version, le tarball `https://registry.npmjs.org/postcss/-/postcss-8.5.19.tgz` et une intégrité SHA-512 ;
+- `npm view postcss dist-tags --json` associe `latest` à `8.5.19` ;
+- le registre date la publication de `8.5.19` du 13 juillet 2026 ;
+- `npm view next@15.5.20 version` et `npm view eslint-config-next@15.5.20 version` retournent tous deux `15.5.20`.
+
+Ainsi, `postcss@8.5.19` est une version npm existante et vérifiée au moment de cette reprise. La version cible directe peut être fixée à `8.5.19`. En revanche, aucune version transitive réellement résolue après migration ne peut être affirmée sans installation : seule la déclaration du package Next peut être vérifiée dans ce lot.
+
 ## Matrice des dépendances
 
 | Dépendance | Version installée | Cible proposée | Statut | Justification |
@@ -37,7 +50,7 @@ Références officielles : [guide de migration Next 15](https://nextjs.org/docs/
 | `@next/eslint-plugin-next` | `14.2.35` transitive | `15.5.20` transitive | automatique | fourni par `eslint-config-next`; utilise `fast-glob@3.3.1` |
 | `glob` | `10.3.10` transitive | absent de ce chemin | automatique | le plugin cible ne déclare plus `glob`, mais `fast-glob` |
 | `postcss` direct | `8.5.8` | `8.5.19` | obligatoire sécurité | l'avis affecte `<8.5.10`; `8.5.19` est la dernière version observée |
-| `postcss` sous Next | `8.4.31` | `8.5.19` via override ciblé | conditionnel pour audit propre | Next `15.5.20` déclare encore exactement `8.4.31` |
+| `postcss` sous Next | `8.4.31` | à observer après installation | option conditionnelle à valider | Next `15.5.20` déclare `8.4.31`, mais l'arbre cible n'est pas installé dans ce lot |
 | `react` | `18.3.1` | inchangée | recommandé minimal | satisfait le peer npm `^18.2.0` de Next `15.5.20` |
 | `react-dom` | `18.3.1` | inchangée | recommandé minimal | doit rester aligné avec React |
 | `eslint` | `8.57.1` | inchangée | recommandé minimal | `eslint-config-next@15.5.20` accepte ESLint 7, 8 ou 9 |
@@ -52,7 +65,7 @@ Baseline `npm audit --json` : 5 entrées, soit 1 moderate et 4 high.
 | Entrée | Version/origine actuelle | Correction requise observée | Effet de Next 15.5.20 | Action complémentaire |
 | --- | --- | --- | --- | --- |
 | `next` | `14.2.35`, directe | seuil commun au moins `15.5.16` | oui pour les avis Next listés | aucune, hors vérification post-installation |
-| `postcss` sous Next | `8.4.31`, transitive | `>=8.5.10` | non : Next `15.5.20` déclare toujours `8.4.31` | override npm ciblé vers `8.5.19`, sous validation PM |
+| `postcss` sous Next | `8.4.31`, transitive | `>=8.5.10` | non démontré : Next `15.5.20` déclare `8.4.31`, mais la résolution cible reste à observer | envisager un override ciblé vers une version publiée et corrigée seulement si l'installation conserve une version vulnérable |
 | `postcss` direct | `8.5.8`, directe | `>=8.5.10` | non | mettre à jour vers `8.5.19` |
 | `eslint-config-next` | `14.2.35`, directe dev | arbre plugin corrigé | oui avec `15.5.20` | aligner explicitement la version |
 | `@next/eslint-plugin-next` | `14.2.35`, transitive dev | retirer le `glob` vulnérable | oui avec `15.5.20` | automatique via config cible |
@@ -107,16 +120,16 @@ Décision minimale : aligner uniquement `eslint-config-next` sur `15.5.20`, cons
 
 ### PostCSS direct
 
-La version `8.5.8` est affectée par l'avis `<8.5.10`. Cible recommandée : `8.5.19`. Le changement reste dans PostCSS 8 et présente un risque faible pour Tailwind CSS 3.4 et Autoprefixer, à confirmer par build.
+La version `8.5.8` est affectée par l'avis `<8.5.10`. La version minimale corrigée est `8.5.10`. La dernière version npm vérifiée est `8.5.19`, retenue comme cible directe. Le changement reste dans PostCSS 8 et présente un risque faible pour Tailwind CSS 3.4 et Autoprefixer, à confirmer par build.
 
 ### PostCSS transitif de Next
 
-`next@15.5.20` déclare toujours `postcss: 8.4.31`. La migration Next ne résout donc pas seule cet avis. Pour obtenir un arbre sans cette version, le futur lot devra soit :
+`next@15.5.20` déclare `postcss: 8.4.31` dans ses métadonnées npm. Cette déclaration ne prouve toutefois pas à elle seule la version qui sera effectivement présente dans l'arbre après installation et déduplication. Le futur lot doit d'abord installer les versions autorisées, puis relever l'arbre réel avec `npm ls postcss` et les audits. Si une version transitive `<8.5.10` subsiste, il devra soit :
 
-1. appliquer un override npm strictement ciblé à la dépendance PostCSS de Next vers `8.5.19`, puis valider lint, typecheck, build, export et audits ;
+1. appliquer, après autorisation, un override npm strictement ciblé vers une version PostCSS 8 publiée et corrigée — `8.5.19` est la candidate vérifiée au 17 juillet 2026 — puis valider lint, typecheck, build, export et audits ;
 2. si l'override provoque une incompatibilité, le retirer et documenter le risque résiduel en attendant un backport Next 15 qui relève PostCSS.
 
-L'override est une mesure de sécurité complémentaire, pas une conséquence automatique de Next 15.
+L'override est une **option conditionnelle à valider**, pas une exigence automatique de la migration Next 15. Il est inutile si l'arbre réellement installé ne contient plus de PostCSS vulnérable.
 
 ## Plan minimal proposé pour BF-REPRISE-006B
 
@@ -132,9 +145,9 @@ L'override est une mesure de sécurité complémentaire, pas une conséquence au
 
 ### Recommandé sous autorisation PM explicite
 
-1. Ajouter un override npm ciblé pour remplacer uniquement le PostCSS transitif de Next par `8.5.19`.
-2. Prouver avec `npm ls postcss` qu'aucune version `<8.5.10` ne subsiste.
-3. Exiger `npm audit` sans les cinq entrées actuelles ; si un nouvel avis apparaît, l'analyser sans correction forcée.
+1. Observer d'abord l'arbre réellement installé avec `npm ls postcss` et les audits.
+2. Uniquement si une version transitive `<8.5.10` subsiste, demander l'autorisation d'un override ciblé vers une version PostCSS 8 publiée et corrigée ; `8.5.19` est la candidate npm vérifiée lors de cette reprise.
+3. Après override éventuel, prouver qu'aucune version `<8.5.10` ne subsiste et exiger `npm audit` sans les cinq entrées actuelles ; si un nouvel avis apparaît, l'analyser sans correction forcée.
 
 ### Hors périmètre
 
