@@ -2,9 +2,9 @@
 
 ## Baseline
 
-- Lot : `BF-REPRISE-006A`.
+- Lot : `BF-REPRISE-006A`, finalisé par la reprise documentaire `BF-REPRISE-006A-R2`.
 - Branche : `main`.
-- SHA initial : `086050ba5c309c4956a3a8919a352a4a1a79fad1`.
+- Baseline opérationnelle de la reprise finale : `aa06f544983353ba20b5f7d674b9e66dca82797b`.
 - Frontend actuel : Next.js `14.2.35`, React et React DOM `18.3.1`, `eslint-config-next` `14.2.35`, ESLint `8.57.1`.
 - Runtime de contrôle : Node.js `22.17.1` (compatible avec la contrainte Next 15 `^18.18.0 || ^19.8.0 || >=20.0.0`).
 - TypeScript résolu : `5.9.3` (déclaration projet `^5.4.5`).
@@ -50,7 +50,7 @@ Ainsi, `postcss@8.5.19` est une version npm existante et vérifiée au moment de
 | `@next/eslint-plugin-next` | `14.2.35` transitive | `15.5.20` transitive | automatique | fourni par `eslint-config-next`; utilise `fast-glob@3.3.1` |
 | `glob` | `10.3.10` transitive | absent de ce chemin | automatique | le plugin cible ne déclare plus `glob`, mais `fast-glob` |
 | `postcss` direct | `8.5.8` | `8.5.19` | obligatoire sécurité | l'avis affecte `<8.5.10`; `8.5.19` est la dernière version observée |
-| `postcss` sous Next | `8.4.31` | à observer après installation | option conditionnelle à valider | Next `15.5.20` déclare `8.4.31`, mais l'arbre cible n'est pas installé dans ce lot |
+| `postcss` sous Next | `8.4.31` | à observer après installation | conditionnel | aucune action avant inspection de l'arbre réellement résolu |
 | `react` | `18.3.1` | inchangée | recommandé minimal | satisfait le peer npm `^18.2.0` de Next `15.5.20` |
 | `react-dom` | `18.3.1` | inchangée | recommandé minimal | doit rester aligné avec React |
 | `eslint` | `8.57.1` | inchangée | recommandé minimal | `eslint-config-next@15.5.20` accepte ESLint 7, 8 ou 9 |
@@ -65,13 +65,13 @@ Baseline `npm audit --json` : 5 entrées, soit 1 moderate et 4 high.
 | Entrée | Version/origine actuelle | Correction requise observée | Effet de Next 15.5.20 | Action complémentaire |
 | --- | --- | --- | --- | --- |
 | `next` | `14.2.35`, directe | seuil commun au moins `15.5.16` | oui pour les avis Next listés | aucune, hors vérification post-installation |
-| `postcss` sous Next | `8.4.31`, transitive | `>=8.5.10` | non démontré : Next `15.5.20` déclare `8.4.31`, mais la résolution cible reste à observer | envisager un override ciblé vers une version publiée et corrigée seulement si l'installation conserve une version vulnérable |
+| `postcss` sous Next | `8.4.31`, transitive | `>=8.5.10` | Next `15.5.20` déclare `8.4.31`; l'arbre installé reste à observer | si une version `<8.5.10` subsiste, STOP et décision PM séparée avant tout override |
 | `postcss` direct | `8.5.8`, directe | `>=8.5.10` | non | mettre à jour vers `8.5.19` |
 | `eslint-config-next` | `14.2.35`, directe dev | arbre plugin corrigé | oui avec `15.5.20` | aligner explicitement la version |
 | `@next/eslint-plugin-next` | `14.2.35`, transitive dev | retirer le `glob` vulnérable | oui avec `15.5.20` | automatique via config cible |
 | `glob` | `10.3.10`, transitive dev | `>=10.5.0` ou suppression du chemin | oui, chemin remplacé par `fast-glob` | confirmer avec `npm ls` et audit |
 
-Projection : Next et la chaîne ESLint/glob sont corrigibles par la migration coordonnée. PostCSS direct doit évoluer séparément. La migration Next seule ne corrige pas le PostCSS transitif : sans override, l'audit devrait conserver au moins l'avis PostCSS et son effet agrégé sur Next. L'override ne doit être adopté que dans un lot autorisé, après build et audit réels ; il ne peut pas être validé par ce préflight sans installation.
+Projection : Next et la chaîne ESLint/glob sont corrigibles par la migration coordonnée, et PostCSS direct doit évoluer séparément. Pour PostCSS transitif, aucune conclusion sur l'arbre futur ne sera tirée avant l'installation. Si une version `<8.5.10` subsiste, la migration s'arrête et le constat est retourné au PM sans appliquer d'override.
 
 ## Impact code Next 15
 
@@ -124,30 +124,44 @@ La version `8.5.8` est affectée par l'avis `<8.5.10`. La version minimale corri
 
 ### PostCSS transitif de Next
 
-`next@15.5.20` déclare `postcss: 8.4.31` dans ses métadonnées npm. Cette déclaration ne prouve toutefois pas à elle seule la version qui sera effectivement présente dans l'arbre après installation et déduplication. Le futur lot doit d'abord installer les versions autorisées, puis relever l'arbre réel avec `npm ls postcss` et les audits. Si une version transitive `<8.5.10` subsiste, il devra soit :
+`next@15.5.20` déclare `postcss: 8.4.31` dans ses métadonnées npm. Cette déclaration ne prouve pas à elle seule la version qui sera effectivement présente dans l'arbre après installation et déduplication.
 
-1. appliquer, après autorisation, un override npm strictement ciblé vers une version PostCSS 8 publiée et corrigée — `8.5.19` est la candidate vérifiée au 17 juillet 2026 — puis valider lint, typecheck, build, export et audits ;
-2. si l'override provoque une incompatibilité, le retirer et documenter le risque résiduel en attendant un backport Next 15 qui relève PostCSS.
+Décision de contrôle :
 
-L'override est une **option conditionnelle à valider**, pas une exigence automatique de la migration Next 15. Il est inutile si l'arbre réellement installé ne contient plus de PostCSS vulnérable.
+1. migrer uniquement les dépendances explicitement autorisées ;
+2. effectuer une installation normale ;
+3. exécuter `npm ls postcss` ;
+4. exécuter les audits complet et production ;
+5. observer l'arbre réellement résolu ;
+6. si une instance PostCSS `<8.5.10` subsiste, arrêter la migration et retourner le constat au PM ;
+7. ne jamais appliquer automatiquement d'override lors du premier passage de migration.
 
 ## Plan minimal proposé pour BF-REPRISE-006B
 
 ### Obligatoire
 
-1. Mettre `next` et `eslint-config-next` exactement à `15.5.20`.
-2. Mettre le PostCSS direct à `8.5.19`.
-3. Conserver React/React DOM `18.3.1`, ESLint `8.57.1` et TypeScript actuel.
-4. Adapter les six fichiers listés à `params: Promise<...>` avec `await params`.
-5. Régénérer le lockfile par une installation npm normale, sans `--force`, sans `--legacy-peer-deps` et sans `audit fix`.
-6. Exécuter `npm ls`, audits complet et production, lint, typecheck, build et contrôle de `out/`.
-7. Servir `out/` statiquement et retester les 26 routes, liens et assets.
+1. Migrer `next` vers `15.5.20`.
+2. Migrer `eslint-config-next` vers `15.5.20`.
+3. Migrer le PostCSS direct vers `8.5.19`.
+4. Conserver React `18.3.1`.
+5. Conserver React DOM `18.3.1`.
+6. Conserver ESLint `8.57.1`.
+7. Adapter uniquement les six signatures `params` réellement requises par Next 15.
+8. Régénérer normalement le lockfile, sans `--force`, sans `--legacy-peer-deps` et sans `audit fix`.
+9. Exécuter `npm ls`.
+10. Exécuter les audits complet et production.
+11. Exécuter lint, typecheck et build.
+12. Valider `out/` depuis un serveur statique.
+13. Retester les 26 routes, les liens et les assets.
 
-### Recommandé sous autorisation PM explicite
+### Gate PostCSS transitif
 
-1. Observer d'abord l'arbre réellement installé avec `npm ls postcss` et les audits.
-2. Uniquement si une version transitive `<8.5.10` subsiste, demander l'autorisation d'un override ciblé vers une version PostCSS 8 publiée et corrigée ; `8.5.19` est la candidate npm vérifiée lors de cette reprise.
-3. Après override éventuel, prouver qu'aucune version `<8.5.10` ne subsiste et exiger `npm audit` sans les cinq entrées actuelles ; si un nouvel avis apparaît, l'analyser sans correction forcée.
+Après l'installation, exécuter `npm ls postcss`.
+
+- Si aucune version `<8.5.10` ne subsiste : aucun override.
+- Si une version `<8.5.10` subsiste : **STOP**. Documenter l'arbre constaté et retourner au PM.
+
+Aucun override ne doit être appliqué automatiquement dans `BF-REPRISE-006B` sans directive complémentaire.
 
 ### Hors périmètre
 
@@ -181,11 +195,11 @@ Après build, confirmer `out/`, servir directement le dossier avec un serveur st
 | typage async de `params` | typecheck et build | erreur de type ou route non générée |
 | modification du rendu statique | inventaire de `out/` et tests HTTP | page absente, 404/500 ou navigation cassée |
 | nouvelles règles lint | comparaison à 0 erreur / 27 avertissements | nouvelle erreur non directement corrigeable dans le périmètre |
-| override PostCSS incompatible | build CSS, inspection visuelle et audit | erreur PostCSS/Tailwind ou rendu CSS altéré |
+| PostCSS transitif vulnérable après installation | `npm ls postcss` et audits | STOP et retour PM avant tout override |
 | arbre npm inattendu | `npm ls` et deux audits | peer conflict, paquet vulnérable non expliqué ou Next 16 introduit |
 
-Rollback : revenir au commit baseline `086050ba5c309c4956a3a8919a352a4a1a79fad1` par un commit de réversion explicite, restaurer le couple `package.json`/`package-lock.json` et les six signatures de pages, puis refaire lint, typecheck, build et test statique. Ne jamais utiliser `git reset --hard` comme procédure de rollback partagée.
+Rollback : revenir à la baseline qui sera fixée par le PM avant `BF-REPRISE-006B`, au moyen d'un commit de réversion explicite ; restaurer ensemble `package.json`, `package-lock.json` et les six signatures de pages, puis refaire lint, typecheck, build et test statique. Ne jamais utiliser `git reset --hard` comme procédure de rollback partagée.
 
 ## Verdict technique
 
-**CANDIDAT À MIGRATION ÉTROITE**, sous réserve d'une décision PM explicite sur l'override PostCSS transitif. La migration Next 15 et les adaptations `params` sont à faible risque ; la remédiation complète de sécurité ne peut pas être affirmée sans installation, audit et build dans `BF-REPRISE-006B`.
+**CANDIDAT À MIGRATION ÉTROITE.** La migration Next 15 et les adaptations `params` sont à faible risque. PostCSS transitif constitue un gate d'observation : toute version `<8.5.10` impose un arrêt et un retour au PM avant override.
