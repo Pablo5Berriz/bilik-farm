@@ -5,16 +5,18 @@ export function generateStaticParams() {
   return [{ locale: 'fr' }];
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   return (
     <>
-      <Header locale={params.locale} />
+      <Header locale={locale} />
       <main className="pt-20">{children}</main>
       <Footer />
     </>

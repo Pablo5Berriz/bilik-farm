@@ -5,8 +5,8 @@ export const metadata = {
   description: "Découvrez le positionnement de Bilik Farm, projet agricole intégré en développement au Cameroun.",
 };
 
-export default function AboutPage({ params }: { params: { locale: string } }) {
-  const { locale } = params;
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
 
   return (
     <>

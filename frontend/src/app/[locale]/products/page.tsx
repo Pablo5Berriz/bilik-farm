@@ -170,8 +170,8 @@ const catalogue = [
 /* ─────────────────────────────────────────
    Page
 ───────────────────────────────────────── */
-export default function ProductsPage({ params }: { params: { locale: string } }) {
-  const { locale } = params;
+export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
 
   return (
     <>

@@ -31,8 +31,9 @@ function formatTitle(slug: string) {
     .join(' ');
 }
 
-export default function ProductDetailPage({ params }: { params: { locale: string; id: string } }) {
-  const title = formatTitle(params.id);
+export default async function ProductDetailPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
+  const { locale, id } = await params;
+  const title = formatTitle(id);
 
   return (
     <Container className="py-12">
@@ -46,7 +47,7 @@ export default function ProductDetailPage({ params }: { params: { locale: string
           <p className="text-gray-600 mb-8">
             Cette page présente une filière ciblée par Bilik Farm. Les informations commerciales et la disponibilité seront communiquées uniquement après validation.
           </p>
-          <Link href={`/${params.locale}/contact`} className="btn-primary w-full text-center block">
+          <Link href={`/${locale}/contact`} className="btn-primary w-full text-center block">
             Demander des informations
           </Link>
         </div>

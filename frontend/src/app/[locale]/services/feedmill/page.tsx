@@ -72,8 +72,8 @@ const equipment = [
   },
 ];
 
-export default function FeedmillPage({ params }: { params: { locale: string } }) {
-  const { locale } = params;
+export default async function FeedmillPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
 
   return (
     <>
