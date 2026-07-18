@@ -1,15 +1,16 @@
 import { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
 }
 
 export function Button({ variant = 'primary', size = 'md', className = '', children, ...props }: ButtonProps) {
   const variants = {
-    primary: 'bg-green-700 text-white hover:bg-green-800',
-    secondary: 'border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-white',
-    ghost: 'text-green-700 hover:bg-green-50',
+    primary: 'bg-terracotta text-white shadow-soft hover:bg-[#a94730] hover:shadow-lift',
+    secondary: 'bg-primary text-white hover:bg-primary-light',
+    outline: 'border border-primary/40 text-primary hover:border-primary hover:bg-primary hover:text-white',
+    ghost: 'text-primary hover:bg-primary/5',
   };
 
   const sizes = {
@@ -20,7 +21,7 @@ export function Button({ variant = 'primary', size = 'md', className = '', child
 
   return (
     <button
-      className={`${variants[variant]} ${sizes[size]} rounded-lg font-semibold transition-colors ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center rounded-full font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-45 ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       {children}
