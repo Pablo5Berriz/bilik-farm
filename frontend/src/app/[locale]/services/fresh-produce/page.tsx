@@ -1,16 +1,6 @@
-import { Container } from '@/components/ui/Container';
-import { Section } from '@/components/ui/Section';
+import { ServicePage } from '@/components/services/ServicePage';
 
-export default function FreshProducePage() {
-  return (
-    <Section title="Cultures ciblées" subtitle="Productions vivrières et maraîchères en développement">
-      <Container>
-        <p className="text-lg text-gray-600">
-          Cette activité fait partie des axes de développement de Bilik Farm. Les cultures seront
-          présentées comme productions en développement, sans disponibilité commerciale publiée tant
-          qu&apos;elle n&apos;est pas confirmée.
-        </p>
-      </Container>
-    </Section>
-  );
+export default async function FreshProducePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <ServicePage locale={locale} service="fresh-produce" />;
 }

@@ -1,16 +1,6 @@
-import { Container } from '@/components/ui/Container';
-import { Section } from '@/components/ui/Section';
+import { ServicePage } from '@/components/services/ServicePage';
 
-export default function HatcheryPage() {
-  return (
-    <Section title="Écloserie prévue" subtitle="Développement futur du projet">
-      <Container>
-        <p className="text-lg text-gray-600">
-          Cette activité fait partie des développements prévus de Bilik Farm et n&apos;est pas encore
-          proposée comme service commercial. Aucune capacité, disponibilité ou performance n&apos;est publiée
-          à ce stade.
-        </p>
-      </Container>
-    </Section>
-  );
+export default async function HatcheryPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <ServicePage locale={locale} service="hatchery" />;
 }

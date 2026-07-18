@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import { Container } from '@/components/ui/Container';
 
 export const metadata = {
   title: 'À propos — Bilik Farm',
-  description: "Découvrez le positionnement de Bilik Farm, projet agricole intégré en développement au Cameroun.",
+  description: 'Découvrez le positionnement de Bilik Farm, projet agricole intégré en développement au Cameroun.',
 };
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -10,250 +11,97 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <>
-      {/* ══ PAGE HERO ═══════════════════════════════════════════════ */}
-      <section className="relative py-28 overflow-hidden">
-        <img
-          src="/images/Historique.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-green-950/90 via-green-900/75 to-green-800/60" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-white/60 mb-6">
-            <Link href={`/${locale}`} className="hover:text-white transition-colors">Accueil</Link>
-            <i className="fas fa-chevron-right text-[10px]"></i>
-            <span className="text-white/90">À propos</span>
+      <section className="relative overflow-hidden bg-ivory py-12 sm:py-16 lg:py-20">
+        <div aria-hidden="true" className="cameroon-pattern absolute left-0 top-0 h-2 w-full opacity-70" />
+        <Container>
+          <nav aria-label="Fil d’Ariane" className="mb-10 flex items-center gap-3 text-sm text-primary/50">
+            <Link href={`/${locale}`} className="rounded-sm hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">Accueil</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-primary">À propos</span>
           </nav>
-
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-5">
-            À propos de <span className="text-green-400">Bilik Farm</span>
-          </h1>
-          <p className="text-lg text-white/70 max-w-xl leading-relaxed">
-            Un projet agricole intégré en développement dans la région du Centre au Cameroun.
-          </p>
-        </div>
-      </section>
-
-      {/* ══ HISTOIRE ════════════════════════════════════════════════ */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Image */}
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="/images/historique.jpg"
-                alt="Histoire de Bilik Farm"
-                loading="lazy"
-                className="w-full object-cover aspect-[4/3]"
-              />
-            </div>
-
-            {/* Text */}
+          <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
             <div>
-              <span className="section-tag">Notre projet</span>
-              <h2 className="text-4xl font-extrabold text-green-900 mt-4 mb-2 leading-tight">
-                Une première phase<br />dans <span className="text-green-600">la région du Centre</span>
-              </h2>
-              <div className="section-divider" />
-              <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>
-                  Bilik Farm est un projet agricole intégré en développement. Il vise à structurer
-                  progressivement des activités agricoles, d&apos;élevage et d&apos;aquaculture.
-                </p>
-                <p>
-                  Le projet démarre dans la région du Centre au Cameroun sur une première superficie
-                  d&apos;environ <strong className="text-gray-800">2,5 hectares</strong>.
-                </p>
-                <p>
-                  Cette première phase permet de poser les bases du projet avant toute extension
-                  commerciale ou industrielle.
-                </p>
-              </div>
-
-              {/* Mini stats */}
-              <div className="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-gray-100">
-                {[
-                  { number: '2,5', suffix: 'ha', label: 'première phase' },
-                  { number: 'Centre', suffix: '', label: 'Cameroun' },
-                  { number: 'Projet', suffix: '', label: 'en développement' },
-                ].map((s) => (
-                  <div key={s.label} className="text-center">
-                    <div className="text-2xl font-extrabold text-green-700">
-                      {s.number}<span className="text-green-400 text-lg">{s.suffix}</span>
-                    </div>
-                    <div className="text-xs text-gray-400 mt-0.5">{s.label}</div>
-                  </div>
-                ))}
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">Notre projet</p>
+              <h1 className="mt-5 font-display text-5xl font-semibold leading-[0.98] tracking-[-0.035em] text-primary sm:text-6xl lg:text-7xl">Une ambition agricole ancrée dans la région du Centre.</h1>
+              <p className="mt-7 max-w-xl text-lg leading-8 text-primary/70">Bilik Farm est un projet agricole intégré en développement au Cameroun.</p>
+            </div>
+            <div className="relative min-h-[380px] sm:min-h-[560px]">
+              <div className="absolute inset-0 overflow-hidden rounded-[2rem] shadow-lift sm:left-10"><img src="/images/historique.jpg" alt="Vue associée à l’histoire du projet Bilik Farm" className="h-full w-full object-cover" /></div>
+              <div className="absolute bottom-6 left-0 max-w-xs rounded-editorial bg-primary p-6 text-white shadow-lift">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold">Première phase</p>
+                <p className="mt-3 font-display text-2xl font-semibold">Environ 2,5 hectares</p>
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ══ MISSION ═════════════════════════════════════════════════ */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Text — left */}
-            <div className="order-2 lg:order-1">
-              <span className="section-tag">Nos engagements</span>
-              <h2 className="text-4xl font-extrabold text-green-900 mt-4 mb-2 leading-tight">
-                Notre <span className="text-green-600">mission</span>
-              </h2>
-              <div className="section-divider" />
-              <div className="space-y-4 text-gray-600 leading-relaxed mb-10">
-                <p>
-                  Chez Bilik Farm, l&apos;objectif est de développer progressivement un modèle agricole
-                  intégré, adapté au territoire et attentif à la qualité des productions futures.
-                </p>
-                <p>
-                  Les activités seront structurées par étapes, sans présenter de capacité, de volume
-                  ou de disponibilité tant qu&apos;ils ne sont pas confirmés.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {[
-                  {
-                    icon: 'fas fa-recycle',
-                    title: 'Pratiques responsables',
-                    desc: 'Volonté de développer des pratiques attentives aux sols et aux ressources',
-                  },
-                  {
-                    icon: 'fas fa-heart',
-                    title: 'Approche progressive',
-                    desc: "Structuration des activités d'élevage par étapes",
-                  },
-                  {
-                    icon: 'fas fa-handshake',
-                    title: 'Impact local',
-                    desc: "Objectif de contribuer au développement local",
-                  },
-                ].map((v) => (
-                  <div key={v.title} className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                    <div className="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center text-white shrink-0">
-                      <i className={v.icon}></i>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-800 text-sm">{v.title}</h4>
-                      <p className="text-xs text-gray-500 mt-0.5">{v.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Image — right */}
-            <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="/images/Historique.png"
-                alt="Mission de Bilik Farm"
-                loading="lazy"
-                className="w-full object-cover aspect-[4/3]"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ ÉQUIPE ══════════════════════════════════════════════════ */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Image */}
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="/images/Equipe.jpg"
-                  alt="Équipe Bilik Farm"
-                  loading="lazy"
-                  className="w-full object-cover aspect-[4/3]"
-                />
-              </div>
-              <div className="absolute -bottom-5 -right-4 bg-green-700 text-white rounded-2xl px-5 py-4 shadow-xl text-center">
-                <div className="text-2xl font-extrabold">100%</div>
-                <div className="text-green-200 text-xs mt-0.5">Passion locale</div>
-              </div>
-            </div>
-
-            {/* Text */}
+      <section className="border-y border-primary/10 bg-white py-20 sm:py-24">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
             <div>
-              <span className="section-tag">Réseau à structurer</span>
-              <h2 className="text-4xl font-extrabold text-green-900 mt-4 mb-2 leading-tight">
-                Notre <span className="text-green-600">approche</span>
-              </h2>
-              <div className="section-divider" />
-              <div className="space-y-4 text-gray-600 leading-relaxed mb-10">
-                <p>
-                  Bilik Farm avance avec une approche progressive. Le projet doit structurer son réseau
-                  technique, ses partenaires et ses pratiques avant de communiquer sur des capacités
-                  commerciales.
-                </p>
-                <p>
-                  Les collaborations futures seront présentées uniquement lorsqu&apos;elles seront confirmées.
-                </p>
-                <p>
-                  Cette prudence permet de conserver une communication claire, sobre et crédible.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 mb-10">
-                {[
-                  { icon: 'fas fa-seedling', label: 'Agriculture' },
-                  { icon: 'fas fa-fish',     label: 'Aquaculture' },
-                  { icon: 'fas fa-paw',      label: 'Élevage' },
-                  { icon: 'fas fa-handshake', label: 'Partenariats' },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-3 bg-green-50 rounded-xl px-4 py-3">
-                    <i className={`${item.icon} text-green-600`}></i>
-                    <span className="text-sm font-medium text-gray-700">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link href={`/${locale}/contact`} className="btn-primary btn-lg">
-                <i className="fas fa-envelope text-sm"></i> Rejoindre notre réseau
-              </Link>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">Construction progressive</p>
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-primary sm:text-5xl">Poser les bases avant toute extension.</h2>
+            </div>
+            <div className="space-y-5 text-lg leading-8 text-primary/65">
+              <p>Le projet vise à structurer progressivement des activités agricoles, d’élevage et d’aquaculture.</p>
+              <p>Cette première phase permet de consolider l’approche du projet avant toute extension commerciale ou industrielle.</p>
+              <p>Les capacités, volumes et disponibilités ne sont pas communiqués tant qu’ils ne sont pas confirmés.</p>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* ══ CTA ═════════════════════════════════════════════════════ */}
-      <section className="relative py-28 overflow-hidden">
-        <img
-          src="/images/ferme.webp"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-green-950/85" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="section-tag text-green-300 border-green-700 bg-green-900/50 mb-6">
-            Nous contacter
-          </span>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight">
-            En savoir plus sur Bilik Farm
-          </h2>
-          <p className="text-green-200 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            Contactez-nous pour demander des informations sur le projet ou proposer un partenariat.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href={`/${locale}/contact`} className="btn-white btn-lg">
-              <i className="fas fa-envelope text-sm"></i> Nous contacter
-            </Link>
-            <Link href={`/${locale}/products`} className="btn-outline btn-lg">
-              <i className="fas fa-seedling text-sm"></i> Voir les filières ciblées
-            </Link>
+      <section className="bg-primary py-20 text-white sm:py-24 lg:py-28">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold">Approche intégrée</p>
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight sm:text-5xl">Trois axes complémentaires.</h2>
+              <p className="mt-6 max-w-lg leading-7 text-white/65">Une organisation progressive adaptée au territoire et à l’avancement réel du projet.</p>
+            </div>
+            <div className="divide-y divide-white/15 border-y border-white/15">
+              {[
+                ['01', 'Agriculture', 'Des cultures vivrières et fruitières ciblées.'],
+                ['02', 'Élevage', 'Des filières avicoles et des élevages complémentaires envisagés.'],
+                ['03', 'Aquaculture', 'Un axe aquacole intégré au développement du projet.'],
+              ].map(([number, title, description]) => (
+                <div key={title} className="grid grid-cols-[3rem_1fr] gap-5 py-7 sm:grid-cols-[4rem_1fr] sm:px-5">
+                  <span className="font-display text-xl text-gold">{number}</span>
+                  <div><h3 className="font-display text-2xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-white/60">{description}</p></div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </Container>
+      </section>
+
+      <section className="overflow-hidden py-20 sm:py-24 lg:py-28">
+        <Container>
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div className="relative min-h-[420px] sm:min-h-[560px]">
+              <div className="absolute inset-y-0 left-0 right-16 overflow-hidden rounded-[2rem] shadow-lift sm:right-24"><img src="/images/Equipe.jpg" alt="Équipe associée au projet Bilik Farm" loading="lazy" className="h-full w-full object-cover" /></div>
+              <div className="absolute bottom-7 right-0 h-48 w-44 overflow-hidden rounded-editorial border-8 border-ivory shadow-lift sm:h-64 sm:w-56"><img src="/images/agriculture.jpg" alt="Parcelle agricole" loading="lazy" className="h-full w-full object-cover" /></div>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">Réseau à structurer</p>
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-primary sm:text-5xl">Une communication claire et crédible.</h2>
+              <p className="mt-7 text-lg leading-8 text-primary/70">Le projet doit structurer son réseau technique, ses partenaires et ses pratiques avant de communiquer sur des capacités commerciales.</p>
+              <p className="mt-5 leading-7 text-primary/60">Les collaborations futures seront présentées uniquement lorsqu’elles seront confirmées.</p>
+              <Link href={`/${locale}/contact`} className="btn-primary btn-lg mt-9">Proposer un partenariat</Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="relative overflow-hidden bg-terracotta py-20 text-white sm:py-24">
+        <div aria-hidden="true" className="cameroon-pattern absolute bottom-0 right-0 h-full w-20 opacity-20 sm:w-32" />
+        <Container className="relative">
+          <div className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
+            <div className="max-w-3xl"><p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">Poursuivre</p><h2 className="mt-5 font-display text-4xl font-semibold leading-tight sm:text-5xl">Découvrir les filières ciblées par Bilik Farm.</h2></div>
+            <Link href={`/${locale}/products`} className="btn-white btn-lg text-center">Voir le catalogue</Link>
+          </div>
+        </Container>
       </section>
     </>
   );
