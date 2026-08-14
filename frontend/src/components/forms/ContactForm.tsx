@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 
 const CONTACT_EMAIL = 'Bilik-farm@gmail.com';
@@ -17,7 +18,11 @@ interface FormErrors {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function ContactForm() {
+interface ContactFormProps {
+  locale?: string;
+}
+
+export function ContactForm({ locale = 'fr' }: ContactFormProps) {
   const [state, setState] = useState<SubmitState>('idle');
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -163,6 +168,14 @@ export function ContactForm() {
         />
         {errors.message && <p id="contact-message-error" role="alert" className="mt-2 text-sm text-terracotta">{errors.message}</p>}
       </div>
+
+      <p className="text-xs leading-5 text-primary/70">
+        Les informations saisies servent uniquement à répondre à votre message et sont transmises au service tiers FormSubmit pour l’acheminer par email.{' '}
+        <Link href={`/${locale}/confidentialite`} className="underline underline-offset-2 hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+          En savoir plus sur ces données
+        </Link>
+        .
+      </p>
 
       <Button type="submit" disabled={state === 'submitting'} aria-busy={state === 'submitting'} className="w-full">
         {state === 'submitting' ? 'Envoi en cours…' : 'Envoyer le message'}

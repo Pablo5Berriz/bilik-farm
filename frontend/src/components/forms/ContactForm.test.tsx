@@ -19,6 +19,13 @@ describe('ContactForm', () => {
     vi.unstubAllGlobals();
   });
 
+  // PRIVACY-001: the privacy page is linked directly from the form, near the submit button.
+  it('links to the confidentiality page for the given locale', () => {
+    render(<ContactForm locale="fr" />);
+    const privacyLink = screen.getByRole('link', { name: /En savoir plus sur ces données/i });
+    expect(privacyLink).toHaveAttribute('href', '/fr/confidentialite');
+  });
+
   // CONTACT-001: an empty/invalid form is rejected without calling the network.
   it('refuses submission and shows field errors when required fields are empty', async () => {
     const user = userEvent.setup();

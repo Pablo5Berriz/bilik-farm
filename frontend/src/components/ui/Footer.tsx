@@ -64,7 +64,12 @@ export function Footer({ locale = 'fr' }: FooterProps) {
       <div className="border-t border-white/10">
         <Container className="flex flex-col gap-2 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Bilik Farm. Tous droits réservés.</p>
-          <p>Projet agricole intégré en développement.</p>
+          <div className="flex items-center gap-4">
+            <p>Projet agricole intégré en développement.</p>
+            <Link href={`/${locale}/confidentialite`} className="rounded-sm underline underline-offset-2 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-primary">
+              Confidentialité
+            </Link>
+          </div>
         </Container>
       </div>
     </footer>
