@@ -54,8 +54,8 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                 <header className="lg:sticky lg:top-44 lg:self-start">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">{section.category}</p>
                   <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-primary sm:text-5xl">{section.title}</h2>
-                  <p className="mt-5 max-w-md text-sm leading-7 text-primary/60">{section.introduction}</p>
-                  <p className="mt-7 border-t border-primary/15 pt-5 text-xs font-bold uppercase tracking-[0.16em] text-primary/45">
+                  <p className="mt-5 max-w-md text-sm leading-7 text-primary/70">{section.introduction}</p>
+                  <p className="mt-7 border-t border-primary/15 pt-5 text-xs font-bold uppercase tracking-[0.16em] text-primary/70">
                     {categoryProducts.length} filière{categoryProducts.length > 1 ? 's' : ''} présentée{categoryProducts.length > 1 ? 's' : ''}
                   </p>
                 </header>
@@ -72,7 +72,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                           <div>
                             <p className="text-[0.68rem] font-bold uppercase tracking-[0.15em] text-terracotta">{product.category}</p>
                             <h3 className="mt-2 font-display text-2xl font-semibold text-primary sm:text-3xl">{product.title}</h3>
-                            <p className="mt-3 max-w-lg text-sm leading-6 text-primary/60">{product.description}</p>
+                            <p className="mt-3 max-w-lg text-sm leading-6 text-primary/70">{product.description}</p>
                           </div>
                           <span aria-hidden="true" className="flex h-11 w-11 items-center justify-center rounded-full border border-primary/20 text-xl text-primary transition group-hover:bg-primary group-hover:text-white">↗</span>
                         </div>
@@ -91,9 +91,9 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         <Container className="relative">
           <div className="grid items-end gap-10 lg:grid-cols-[1fr_auto]">
             <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">Informations</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white">Informations</p>
               <h2 className="mt-5 font-display text-4xl font-semibold leading-tight sm:text-5xl">Une question sur les filières ciblées ?</h2>
-              <p className="mt-5 max-w-2xl leading-7 text-white/75">La page contact permet de demander des informations sur le projet ou de proposer un partenariat.</p>
+              <p className="mt-5 max-w-2xl leading-7 text-white">La page contact permet de demander des informations sur le projet ou de proposer un partenariat.</p>
             </div>
             <Link href={`/${locale}/contact`} className="btn-white btn-lg text-center">Nous contacter</Link>
           </div>

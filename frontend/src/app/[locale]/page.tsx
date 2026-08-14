@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
+
+export const metadata: Metadata = {
+  title: 'Accueil — Bilik Farm',
+  description: "Bilik Farm est un projet agricole intégré en développement sur une première superficie d'environ 2,5 hectares dans la région du Centre au Cameroun.",
+};
 
 const sectors = [
   {
@@ -109,11 +115,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
             <div className="border-t border-primary/10 py-8 md:border-l md:border-t-0 md:px-10 lg:py-10">
               <p className="text-sm font-semibold text-primary">Première phase</p>
-              <p className="mt-2 text-sm leading-6 text-primary/60">Une superficie d’environ 2,5 hectares.</p>
+              <p className="mt-2 text-sm leading-6 text-primary/70">Une superficie d’environ 2,5 hectares.</p>
             </div>
             <div className="border-t border-primary/10 py-8 md:border-l md:border-t-0 md:pl-10 lg:py-10">
               <p className="text-sm font-semibold text-primary">Approche</p>
-              <p className="mt-2 text-sm leading-6 text-primary/60">Un développement progressif et ancré localement.</p>
+              <p className="mt-2 text-sm leading-6 text-primary/70">Un développement progressif et ancré localement.</p>
             </div>
           </div>
         </Container>
@@ -182,7 +188,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">Axes du projet</p>
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-primary sm:text-5xl">Des infrastructures pensées pour accompagner le développement.</h2>
-              <p className="mt-6 max-w-lg leading-7 text-primary/65">Ces axes sont prévus ou à structurer. Ils ne sont pas présentés comme des services commerciaux actuellement disponibles.</p>
+              <p className="mt-6 max-w-lg leading-7 text-primary/70">Ces axes sont prévus ou à structurer. Ils ne sont pas présentés comme des services commerciaux actuellement disponibles.</p>
             </div>
             <div className="divide-y divide-primary/15 border-y border-primary/15">
               {projectAxes.map((axis) => (
@@ -190,7 +196,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   <span className="font-display text-xl text-terracotta">{axis.number}</span>
                   <span>
                     <span className="block font-display text-2xl font-semibold text-primary sm:text-3xl">{axis.title}</span>
-                    <span className="mt-3 block max-w-lg text-sm leading-6 text-primary/60">{axis.description}</span>
+                    <span className="mt-3 block max-w-lg text-sm leading-6 text-primary/70">{axis.description}</span>
                   </span>
                   <span aria-hidden="true" className="text-2xl text-primary transition group-hover:translate-x-1">→</span>
                 </Link>
@@ -215,7 +221,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">Histoire et vision</p>
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-primary sm:text-5xl">Construire avec méthode, au rythme du projet.</h2>
               <p className="mt-7 text-lg leading-8 text-primary/70">Bilik Farm se développe progressivement dans la région du Centre au Cameroun, avec l’ambition de relier agriculture, élevage et aquaculture au sein d’un même projet.</p>
-              <p className="mt-5 leading-7 text-primary/60">La première phase, d’environ 2,5 hectares, constitue le point de départ de cette construction.</p>
+              <p className="mt-5 leading-7 text-primary/70">La première phase, d’environ 2,5 hectares, constitue le point de départ de cette construction.</p>
               <Link href={`/${locale}/about`} className="btn-primary btn-lg mt-9">Lire la présentation du projet</Link>
             </div>
           </div>
@@ -242,7 +248,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <Container className="relative">
           <div className="grid items-end gap-10 lg:grid-cols-[1fr_auto]">
             <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">Poursuivre la découverte</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white">Poursuivre la découverte</p>
               <h2 className="mt-5 font-display text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">Comprendre le projet ou proposer un partenariat.</h2>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
