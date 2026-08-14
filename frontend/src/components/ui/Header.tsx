@@ -103,7 +103,7 @@ export function Header({ locale }: HeaderProps) {
               )}
             </div>
             <Link href={`/${locale}/contact`} aria-current={isActive(`/${locale}/contact`) ? 'page' : undefined}
-              className={`ml-2 inline-flex min-h-11 items-center rounded-full px-5 py-2.5 text-sm font-semibold transition ${focusStyle} ${isActive(`/${locale}/contact`) ? 'bg-primary text-white' : 'bg-terracotta text-white hover:bg-[#a94730]'}`}>
+              className={`ml-2 inline-flex min-h-11 items-center rounded-full px-5 py-2.5 text-sm font-semibold transition ${focusStyle} ${isActive(`/${locale}/contact`) ? 'bg-primary text-white' : 'bg-terracotta text-white hover:bg-[#903c29]'}`}>
               Nous contacter
             </Link>
           </nav>
@@ -130,7 +130,7 @@ export function Header({ locale }: HeaderProps) {
                       {service.label}
                     </Link>
                   ))}
-                  <Link href={`/${locale}/contact`} onClick={() => setMenuOpen(false)} className={`mt-5 flex min-h-12 items-center justify-center rounded-full bg-terracotta px-5 py-3 font-semibold text-white hover:bg-[#a94730] ${focusStyle}`}>
+                  <Link href={`/${locale}/contact`} onClick={() => setMenuOpen(false)} className={`mt-5 flex min-h-12 items-center justify-center rounded-full bg-terracotta px-5 py-3 font-semibold text-white hover:bg-[#903c29] ${focusStyle}`}>
                     Nous contacter
                   </Link>
                 </div>
