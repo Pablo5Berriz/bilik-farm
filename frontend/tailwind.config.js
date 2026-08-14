@@ -13,7 +13,9 @@ module.exports = {
           dark: '#102016',
           light: '#294834',
         },
-        terracotta: '#C35B3E',
+        // WCAG AA fix (BILIK-FARM-RELEASE-FIX-009): darkened from the original #C35B3E,
+        // which failed 4.5:1 both as text on ivory/white and as a background under white text.
+        terracotta: '#A94730',
         gold: '#D4AF37',
         ivory: '#F9F6F0',
         ink: '#1C1C18',

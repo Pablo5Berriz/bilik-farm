@@ -48,7 +48,7 @@
   .btn-lg  { @apply px-8 py-3.5 text-base; }
 
   .btn-primary {
-    @apply btn btn-md bg-terracotta text-white shadow-soft hover:-translate-y-0.5 hover:bg-[#a94730] hover:shadow-lift;
+    @apply btn btn-md bg-terracotta text-white shadow-soft hover:-translate-y-0.5 hover:bg-[#903c29] hover:shadow-lift;
   }
   .btn-outline {
     @apply btn btn-md border-2 border-white/80 text-white

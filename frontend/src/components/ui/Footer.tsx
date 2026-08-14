@@ -52,6 +52,9 @@ export function Footer({ locale = 'fr' }: FooterProps) {
           <div>
             <h2 className="font-display text-lg font-semibold">Ancrage</h2>
             <p className="mt-5 text-sm leading-7 text-white/70">Région du Centre<br />Cameroun</p>
+            <a href="mailto:Bilik-farm@gmail.com" className={`mt-5 block ${linkStyle}`}>
+              Bilik-farm@gmail.com
+            </a>
             <Link href={`/${locale}/contact`} className={`mt-5 inline-flex min-h-11 items-center rounded-full border border-white/30 px-5 py-2.5 font-semibold text-white hover:border-gold hover:text-gold ${linkStyle}`}>
               Page contact
             </Link>
@@ -61,7 +64,12 @@ export function Footer({ locale = 'fr' }: FooterProps) {
       <div className="border-t border-white/10">
         <Container className="flex flex-col gap-2 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Bilik Farm. Tous droits réservés.</p>
-          <p>Projet agricole intégré en développement.</p>
+          <div className="flex items-center gap-4">
+            <p>Projet agricole intégré en développement.</p>
+            <Link href={`/${locale}/confidentialite`} className="rounded-sm underline underline-offset-2 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-primary">
+              Confidentialité
+            </Link>
+          </div>
         </Container>
       </div>
     </footer>

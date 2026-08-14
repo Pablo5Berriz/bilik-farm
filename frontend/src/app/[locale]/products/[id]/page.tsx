@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Container } from '@/components/ui/Container';
@@ -5,6 +6,20 @@ import { getProductBySlug, products } from '@/data/products';
 
 export function generateStaticParams() {
   return products.map((product) => ({ id: product.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const product = getProductBySlug(id);
+
+  if (!product) {
+    return { title: 'Fiche introuvable — Bilik Farm' };
+  }
+
+  return {
+    title: `${product.title} | Bilik Farm`,
+    description: `${product.description} Catégorie : ${product.category}. Statut : ${product.status}.`,
+  };
 }
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
@@ -23,7 +38,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
       <section className="relative overflow-hidden bg-ivory py-12 sm:py-16 lg:py-20">
         <div aria-hidden="true" className="cameroon-pattern absolute left-0 top-0 h-2 w-full opacity-70" />
         <Container>
-          <nav aria-label="Fil d’Ariane" className="mb-10 flex flex-wrap items-center gap-3 text-sm text-primary/50">
+          <nav aria-label="Fil d’Ariane" className="mb-10 flex flex-wrap items-center gap-3 text-sm text-primary/70">
             <Link href={`/${locale}`} className="rounded-sm transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">Accueil</Link>
             <span aria-hidden="true">/</span>
             <Link href={`/${locale}/products`} className="rounded-sm transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">Filières ciblées</Link>
@@ -49,7 +64,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
               <div className="mt-9 border-y border-primary/15 py-7">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-terracotta">À retenir</p>
-                <p className="mt-3 leading-7 text-primary/65">Cette fiche présente une filière du projet Bilik Farm. Aucune disponibilité commerciale n’est confirmée à ce stade.</p>
+                <p className="mt-3 leading-7 text-primary/70">Cette fiche présente une filière du projet Bilik Farm. Aucune disponibilité commerciale n’est confirmée à ce stade.</p>
               </div>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">

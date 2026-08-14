@@ -16,7 +16,7 @@ export function ServicePage({ locale, service }: ServicePageProps) {
       <section className="relative overflow-hidden bg-ivory py-12 sm:py-16 lg:py-20">
         <div aria-hidden="true" className="cameroon-pattern absolute left-0 top-0 h-2 w-full opacity-70" />
         <Container>
-          <nav aria-label="Fil d’Ariane" className="mb-10 flex flex-wrap items-center gap-3 text-sm text-primary/50">
+          <nav aria-label="Fil d’Ariane" className="mb-10 flex flex-wrap items-center gap-3 text-sm text-primary/70">
             <Link href={`/${locale}`} className="rounded-sm transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">Accueil</Link>
             <span aria-hidden="true">/</span>
             <span>Axes du projet</span>
@@ -47,7 +47,7 @@ export function ServicePage({ locale, service }: ServicePageProps) {
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-terracotta">Position actuelle</p>
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-primary">Un axe présenté avec prudence.</h2>
-              <p className="mt-6 leading-7 text-primary/65">{axis.description}</p>
+              <p className="mt-6 leading-7 text-primary/70">{axis.description}</p>
             </div>
             <div className="divide-y divide-primary/15 border-y border-primary/15">
               {axis.points.map((point, index) => (
@@ -55,7 +55,7 @@ export function ServicePage({ locale, service }: ServicePageProps) {
                   <span className="font-display text-xl text-terracotta">0{index + 1}</span>
                   <div>
                     <h3 className="font-display text-2xl font-semibold text-primary">{point.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-primary/60">{point.description}</p>
+                    <p className="mt-3 text-sm leading-6 text-primary/70">{point.description}</p>
                   </div>
                 </div>
               ))}
@@ -91,7 +91,7 @@ export function ServicePage({ locale, service }: ServicePageProps) {
         <Container className="relative">
           <div className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
             <div className="max-w-3xl">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">Échanger sur le projet</p>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white">Échanger sur le projet</p>
               <h2 className="mt-5 font-display text-4xl font-semibold leading-tight sm:text-5xl">Demander des informations ou proposer un partenariat.</h2>
             </div>
             <Link href={`/${locale}/contact`} className="btn-white btn-lg text-center">Nous contacter</Link>
