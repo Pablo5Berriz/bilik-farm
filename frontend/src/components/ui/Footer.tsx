@@ -52,6 +52,9 @@ export function Footer({ locale = 'fr' }: FooterProps) {
           <div>
             <h2 className="font-display text-lg font-semibold">Ancrage</h2>
             <p className="mt-5 text-sm leading-7 text-white/70">Région du Centre<br />Cameroun</p>
+            <a href="mailto:Bilik-farm@gmail.com" className={`mt-5 block ${linkStyle}`}>
+              Bilik-farm@gmail.com
+            </a>
             <Link href={`/${locale}/contact`} className={`mt-5 inline-flex min-h-11 items-center rounded-full border border-white/30 px-5 py-2.5 font-semibold text-white hover:border-gold hover:text-gold ${linkStyle}`}>
               Page contact
             </Link>
